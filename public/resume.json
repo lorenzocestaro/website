@@ -1,0 +1,172 @@
+{
+  "$schema": "https://raw.githubusercontent.com/jsonresume/resume-schema/v1.0.0/schema.json",
+  "basics": {
+    "name": "Lorenzo Cestaro",
+    "label": "Senior Software Engineer",
+    "email": "hi@lorenzocestaro.com",
+    "url": "https://lorenzocestaro.com",
+    "summary": "In my career I have worked in both backend and frontend teams, which allowed me to develop knowledge across the stack and gain the ability to add value to engineering teams on multiple levels. I enjoy working in cross functional product teams, where I can independently drive initiatives and features.",
+    "location": {
+      "city": "Berlin",
+      "countryCode": "DE",
+      "region": "Berlin"
+    },
+    "profiles": [
+      {
+        "network": "GitHub",
+        "username": "lorenzocestaro",
+        "url": "https://github.com/lorenzocestaro/"
+      },
+      {
+        "network": "LinkedIn",
+        "username": "lorenzocestaro",
+        "url": "https://linkedin.com/in/lorenzocestaro/"
+      },
+      {
+        "network": "Email",
+        "username": "hi@lorenzocestaro.com",
+        "url": "mailto:hi@lorenzocestaro.com"
+      }
+    ]
+  },
+  "work": [
+    {
+      "position": "Senior Software Engineer",
+      "company": "Klarna AB",
+      "location": "Berlin, Germany",
+      "description": "Smoooth shopping.",
+      "url": "https://www.klarna.com/",
+      "startDate": "2021-05-01",
+      "summary": "Software engineer for a greenfield project born to decommission an obsolete internal tool for fraud detection. Initially unique contributor for the frontend, helped to scale the team to 4 resources and lead it with a sprint based approach."
+    },
+    {
+      "position": "Software Engineer",
+      "company": "Klarna AB",
+      "location": "Berlin, Germany",
+      "description": "Smoooth shopping.",
+      "url": "https://klarna.com/careers",
+      "startDate": "2019-12-01",
+      "endDate": "2021-04-30"
+    },
+    {
+      "position": "Software Engineer - Backend",
+      "company": "iGenius s.r.l.",
+      "location": "Milan, Italy",
+      "description": "Creators of crystal, the virtual advisor for data intelligence.",
+      "url": "https://igenius.ai/",
+      "startDate": "2019-03-01",
+      "endDate": "2019-11-30",
+      "summary": "Developed new components for the company's microservice architecture and worked on proof of concept projects for customers. Established common CI/CD pipelines for both node.js and python projects."
+    },
+    {
+      "position": "Software Engineer - Machine Learning",
+      "company": "iGenius s.r.l.",
+      "location": "Milan, Italy",
+      "description": "Creators of crystal, the virtual advisor for data intelligence.",
+      "url": "https://igenius.ai/",
+      "startDate": "2016-09-30",
+      "endDate": "2019-02-28",
+      "summary": "Software engineer working alongside machine learning engineers to develop and deploy web services for NLP applications and deep learning models. I was responsible for technical interviews, mentored new hires and helped the team establish development best practices, continuous integration and continuous delivery."
+    },
+    {
+      "company": "University of Trieste",
+      "location": "Trieste, Italy",
+      "url": "https://www.linkedin.com/company/university-of-trieste/",
+      "position": "Research Intern",
+      "startDate": "2014-10-31",
+      "endDate": "2015-12-31",
+      "summary": "Performed molecular phylogenetic analyses to support the discovery of a novel species of lichen. Specific tasks included: dna extraction and amplification of lichen samples, thin layer chromatography of lichen substances, morphological analysis of lichens, maximum likelihood and bayesian computational analyses of sequenced DNA."
+    }
+  ],
+  "volunteer": [
+    {
+      "organization": "S. Nicolò parish church",
+      "location": "Mira, Italy",
+      "position": "Guitar Teacher",
+      "startDate": "2010-12-31",
+      "endDate": "2013-12-31",
+      "summary": "Group lessons targeted at 11 to 16-year-old students covering music theory basics, beginner and intermediate rhythmic guitar."
+    }
+  ],
+  "education": [
+    {
+      "institution": "University of Trieste",
+      "location": "Trieste, Italy",
+      "url": "https://www.units.it/",
+      "area": "Environmental Biology",
+      "studyType": "MSc",
+      "startDate": "2013-12-31",
+      "endDate": "2015-12-31"
+    },
+    {
+      "institution": "University of Padova",
+      "location": "Padova, Italy",
+      "url": "https://www.unipd.it/",
+      "area": "Environmental science and technology",
+      "studyType": "BSc",
+      "startDate": "2010-12-31",
+      "endDate": "2013-12-31"
+    }
+  ],
+  "publications": [
+    {
+      "name": "Phylogenetic Data and Chemical Traits Characterize a New Species in the Lichen Genus Tephromela",
+      "publisher": "Herzogia 29(2):383-402",
+      "releaseDate": "2016-12-01",
+      "url": "http://dx.doi.org/10.13158/heia.29.2.2016.383"
+    }
+  ],
+  "certificates": [
+    {
+      "name": "Algorithms on strings",
+      "issuer": "Coursera",
+      "url": "https://www.coursera.org/account/accomplishments/verify/EAVF58EPHWMZ",
+      "date": "2019-03-19"
+    },
+    {
+      "name": "Algorithms on graphs",
+      "issuer": "Coursera",
+      "url": "https://www.coursera.org/account/accomplishments/verify/8GYJQ8338VYM",
+      "date": "2019-02-26"
+    },
+    {
+      "name": "Data structures",
+      "issuer": "Coursera",
+      "url": "https://www.coursera.org/account/accomplishments/verify/LZTYJ2C9MPRA",
+      "date": "2019-01-24"
+    },
+    {
+      "name": "Algorithmic toolbox",
+      "issuer": "Coursera",
+      "url": "https://www.coursera.org/account/accomplishments/verify/896J5LQKZEBK",
+      "date": "2018-10-31"
+    },
+    {
+      "name": "Deep learning specialization",
+      "issuer": "Coursera",
+      "url": "https://www.coursera.org/account/accomplishments/specialization/9SZASWC87AE7",
+      "date": "2018-03-11"
+    }
+  ],
+  "skills": [
+    {
+      "name": "Frontend development",
+      "keywords": ["JavaScript", "TypeScript", "React", "HTML", "CSS"]
+    },
+    {
+      "name": "Backend development",
+      "keywords": ["Python", "Docker", "PostgreSQL", "ReST"]
+    },
+    { "name": "Git" }
+  ],
+  "languages": [
+    {
+      "language": "Italian",
+      "fluency": "Native Speaker"
+    },
+    {
+      "language": "English",
+      "fluency": "Fluent"
+    }
+  ]
+}
