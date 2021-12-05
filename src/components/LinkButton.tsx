@@ -11,25 +11,33 @@ const styles = {
     "md:py-4",
     "px-6",
     "md:px-8",
-    "text-gray-700",
+    "text-yellow-800",
+    "dark:text-blue-800",
     "bg-yellow-400",
     "hover:bg-yellow-300",
-    "border-b-4",
-    "active:border-b-0",
     "border-yellow-600",
     "hover:border-yellow-400",
+    "border-b-4",
+    "active:border-b-0",
     "rounded",
     "cursor-pointer",
+    "dark:bg-blue-400",
+    "dark:hover:bg-blue-300",
+    "dark:border-blue-600",
+    "dark:hover:border-blue-400",
+    "transition-colors",
+    "duration-500",
   ),
 };
 
 interface LinkButtonProps {
-  className?: string;
   href?: string;
+  title?: string;
+  className?: string;
 }
 
-const LinkButton: React.FC<LinkButtonProps> = ({ href, children, className }) => (
-  <a className={clsx(styles.link, className)} href={href}>
+const LinkButton: React.FC<LinkButtonProps> = ({ href, title, className, children }) => (
+  <a className={clsx(styles.link, className)} href={href} title={title}>
     {children}
   </a>
 );

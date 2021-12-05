@@ -6,13 +6,13 @@ const styles = {
   link: (active: boolean) =>
     clsx(
       "font-display",
-      "border-yellow-400",
-      "border-b-4",
-      "text-gray-700",
-      active || "border-dotted",
-      active && "border-solid",
-      "hover:border-solid",
       "md:text-xl",
+      active && "border-solid",
+      active || "border-dotted",
+      "hover:border-solid",
+      "border-b-4",
+      "border-yellow-400",
+      "dark:border-blue-400",
     ),
 };
 

@@ -5,14 +5,14 @@ import clsx from "clsx";
 import Link from "src/components/Link";
 
 const styles = {
-  h1: clsx("font-light", "text-gray-700", "text-sm", "sm:text-lg"),
-  h2: clsx("mt-3", "text-3xl", "sm:text-5xl", "font-display", "font-extrabold", "text-gray-700"),
-  h3: clsx("text-xl", "sm:text-3xl", "text-gray-700", "font-display", "font-semibold", "mt-2"),
-  p: clsx("mt-3", "sm:mt-6", "sm:leading-normal", "text-gray-700", "sm:text-xl"),
+  h1: clsx("font-light", "text-sm", "sm:text-lg"),
+  h2: clsx("mt-3", "text-3xl", "sm:text-5xl", "font-display", "font-extrabold"),
+  h3: clsx("text-xl", "sm:text-3xl", "font-display", "font-semibold", "mt-2"),
+  p: clsx("mt-3", "sm:mt-6", "sm:leading-normal", "sm:text-xl"),
 };
 
 const About = () => (
-  <>
+  <section title="About">
     <h1 className={styles.h1}>Hello, my name is</h1>
     <h2 className={styles.h2}>Lorenzo Cestaro</h2>
     <h3 className={styles.h3}>Best software engineer in my household.</h3>
@@ -35,7 +35,7 @@ const About = () => (
       <Link href="https://github.com/lorenzocestaro/">GitHub</Link>, or send me an{" "}
       <Link href="mailto:hi@lorenzocestaro.com">Email</Link>.
     </p>
-  </>
+  </section>
 );
 
 export default About;

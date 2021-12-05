@@ -1,6 +1,19 @@
 import React from "react";
 
+import clsx from "clsx";
+
 import Document, { DocumentContext, Html, Head, Main, NextScript } from "next/document";
+
+const styles = {
+  body: clsx(
+    "bg-gray-50",
+    "dark:bg-gray-900",
+    "text-gray-700",
+    "dark:text-gray-300",
+    "transition-colors",
+    "duration-500",
+  ),
+};
 
 class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
@@ -22,7 +35,7 @@ class MyDocument extends Document {
             rel="stylesheet"
           />
         </Head>
-        <body>
+        <body className={styles.body}>
           <Main />
           <NextScript />
         </body>

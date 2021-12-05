@@ -22,7 +22,13 @@ const styles = {
     "text-sm",
     "text-gray-400",
   ),
-  link: clsx("border-dotted", "border-b-2", "hover:border-solid", "cursor:pointer"),
+  link: clsx(
+    "border-dotted",
+    "border-b-2",
+    "border-gray-400",
+    "hover:border-solid",
+    "cursor:pointer",
+  ),
 };
 
 const Footer = () => (
