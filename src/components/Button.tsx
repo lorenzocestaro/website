@@ -30,16 +30,16 @@ const styles = {
   ),
 };
 
-interface LinkButtonProps {
+interface ButtonProps {
   href?: string;
   title?: string;
   className?: string;
 }
 
-const LinkButton: React.FC<LinkButtonProps> = ({ href, title, className, children }) => (
+const Button: React.FC<ButtonProps> = ({ href, title, className, children }) => (
   <a className={clsx(styles.link, className)} href={href} title={title}>
     {children}
   </a>
 );
 
-export default LinkButton;
+export default Button;

@@ -4,9 +4,9 @@ import clsx from "clsx";
 import Head from "next/head";
 
 import About from "src/components/About";
+import Button from "src/components/Button";
 import Footer from "src/components/Footer";
 import LightSwitch from "src/components/LightSwitch";
-import LinkButton from "src/components/LinkButton";
 
 const styles = {
   about: clsx("xl:w-1/2", "xl:mt-0", "mt-12", "mx-auto"),
@@ -26,9 +26,9 @@ const Home: React.FC = () => (
       <div className={styles.about}>
         <About />
       </div>
-      <LinkButton className={styles.button} title="Resume" href="https://read.cv/lorenzocestaro">
+      <Button className={styles.button} title="Resume" href="https://read.cv/lorenzocestaro">
         RESUME
-      </LinkButton>
+      </Button>
     </main>
 
     <Footer />
