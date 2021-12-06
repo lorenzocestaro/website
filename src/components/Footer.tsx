@@ -36,7 +36,7 @@ const Footer = () => (
     <p>&copy; {new Date().getFullYear()} Lorenzo Cestaro</p>
     <span className={styles.break}> · </span>
     <span>
-      <a className={styles.link} href="https://github.com/lorenzocestaro/lorenzocestaro.github.io">
+      <a className={styles.link} href="https://github.com/lorenzocestaro/website">
         Source code
       </a>
       <span> · </span>
