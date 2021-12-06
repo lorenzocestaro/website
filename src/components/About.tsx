@@ -25,8 +25,8 @@ const About = () => (
       <Link href="https://www.python.org">Python</Link>.
     </p>
     <p className={styles.p}>
-      I am a self-taught software engineer with 5+ years of experience. In my career I have worked
-      in both backend and frontend teams, I have experience across the stack and can add value to
+      I am a self-taught software engineer with 5+ years of experience. In my career I worked in
+      both backend and frontend teams, I have experience across the stack and can add value to
       engineering teams on multiple levels. I am product oriented and enjoy working in cross
       functional teams, where I can independently drive initiatives and features.
     </p>
