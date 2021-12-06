@@ -38,9 +38,7 @@ const styles = {
 };
 
 const LightSwitch: React.FC = () => {
-  const { theme, systemTheme, setTheme } = useTheme();
-  console.log(systemTheme);
-  const currentTheme = theme ?? systemTheme;
+  const { theme, setTheme } = useTheme();
 
   return (
     <div className={styles.container}>
@@ -49,8 +47,8 @@ const LightSwitch: React.FC = () => {
           id="light-switch"
           type="checkbox"
           className={styles.input}
-          defaultChecked={currentTheme === "light"}
-          onClick={() => setTheme(currentTheme === "light" ? "dark" : "light")}
+          defaultChecked={theme === "light"}
+          onClick={() => setTheme(theme === "light" ? "dark" : "light")}
         />
         <div className={styles.switch} />
       </label>
