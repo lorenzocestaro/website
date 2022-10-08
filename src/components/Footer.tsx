@@ -33,7 +33,7 @@ const styles = {
 
 const Footer = () => (
   <footer className={styles.footer}>
-    <p>&copy; {new Date().getFullYear()} Lorenzo Cestaro</p>
+    <p>&copy; 2021 Lorenzo Cestaro</p>
     <span className={styles.break}> · </span>
     <span>
       <a className={styles.link} href="https://github.com/lorenzocestaro/website">
