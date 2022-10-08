@@ -31,7 +31,6 @@ const styles = {
     "rounded",
     "transition-all",
     "duration-500",
-    "transform",
     "translate-x-0",
     "dark:translate-x-7",
   ),

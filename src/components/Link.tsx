@@ -19,6 +19,7 @@ const styles = {
 interface LinkProps {
   href?: string;
   active?: boolean;
+  children: React.ReactNode;
 }
 
 const Link: React.FC<LinkProps> = ({ href, active = false, children }) => (

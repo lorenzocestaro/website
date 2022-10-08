@@ -34,6 +34,7 @@ interface ButtonProps {
   href?: string;
   title?: string;
   className?: string;
+  children: React.ReactNode;
 }
 
 const Button: React.FC<ButtonProps> = ({ href, title, className, children }) => (
