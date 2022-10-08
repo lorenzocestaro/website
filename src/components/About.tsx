@@ -18,11 +18,10 @@ const About = () => (
     <h3 className={styles.h3}>Best software engineer in my household.</h3>
     <p className={styles.p}>
       I am currently working at <Link href="https://www.klarna.com/careers">Klarna</Link>, where I
-      helped build an internal tool for fraud detection using{" "}
+      am helping to launch a completely new product search experience in the mobile app using{" "}
       <Link href="https://www.reactjs.org/">React</Link>,{" "}
-      <Link href="https://www.typescriptlang.org/">Typescript</Link>,{" "}
-      <Link href="https://elastic.co">Elasticsearch</Link> and{" "}
-      <Link href="https://www.python.org">Python</Link>.
+      <Link href="https://www.typescriptlang.org/">Typescript</Link> and{" "}
+      <Link href="https://nodejs.org/">Node</Link>.
     </p>
     <p className={styles.p}>
       I am a self-taught software engineer with 5+ years of experience. In my career I worked in
