@@ -20,14 +20,14 @@ const styles = {
     "pb-4",
     "sm:pb-0",
     "text-sm",
-    "text-gray-400",
+    "text-gray-400"
   ),
   link: clsx(
     "border-dotted",
     "border-b-2",
     "border-gray-400",
     "hover:border-solid",
-    "cursor:pointer",
+    "cursor:pointer"
   ),
 };
 
@@ -36,11 +36,17 @@ const Footer = () => (
     <p>&copy; 2021 Lorenzo Cestaro</p>
     <span className={styles.break}> · </span>
     <span>
-      <a className={styles.link} href="https://github.com/lorenzocestaro/website">
+      <a
+        className={styles.link}
+        href="https://github.com/lorenzocestaro/website"
+      >
         Source code
       </a>
       <span> · </span>
-      <a className={styles.link} href="https://www.google.com/maps/search/bars+near+me/">
+      <a
+        className={styles.link}
+        href="https://www.google.com/maps/search/bars+near+me/"
+      >
         Buy yourself a beer
       </a>
     </span>

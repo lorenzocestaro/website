@@ -17,22 +17,25 @@ const About = () => (
     <h2 className={styles.h2}>Lorenzo Cestaro</h2>
     <h3 className={styles.h3}>Best software engineer in my household.</h3>
     <p className={styles.p}>
-      I am currently working at <Link href="https://www.klarna.com/careers">Klarna</Link>, where I
-      am helping to launch a completely new product search experience in the mobile app using{" "}
-      <Link href="https://www.reactjs.org/">React</Link>,{" "}
+      I am currently working at{" "}
+      <Link href="https://www.klarna.com/careers">Klarna</Link>, where I am
+      helping to launch a completely new product search experience in the mobile
+      app using <Link href="https://www.reactjs.org/">React</Link>,{" "}
       <Link href="https://www.typescriptlang.org/">Typescript</Link> and{" "}
       <Link href="https://nodejs.org/">Node</Link>.
     </p>
     <p className={styles.p}>
-      I am a self-taught software engineer with 5+ years of experience. In my career I worked in
-      both backend and frontend teams, I have experience across the stack and can add value to
-      engineering teams on multiple levels. I am product oriented and enjoy working in cross
-      functional teams, where I can independently drive initiatives and features.
+      I am a self-taught software engineer with 5+ years of experience. In my
+      career I worked in both backend and frontend teams, I have experience
+      across the stack and can add value to engineering teams on multiple
+      levels. I am product oriented and enjoy working in cross functional teams,
+      where I can independently drive initiatives and features.
     </p>
     <p className={styles.p}>
-      Find me on <Link href="https://linkedin.com/in/lorenzocestaro/">LinkedIn</Link> and{" "}
-      <Link href="https://github.com/lorenzocestaro/">GitHub</Link>, or send me an{" "}
-      <Link href="mailto:hi@lorenzocestaro.com">Email</Link>.
+      Find me on{" "}
+      <Link href="https://linkedin.com/in/lorenzocestaro/">LinkedIn</Link> and{" "}
+      <Link href="https://github.com/lorenzocestaro/">GitHub</Link>, or send me
+      an <Link href="mailto:hi@lorenzocestaro.com">Email</Link>.
     </p>
   </section>
 );

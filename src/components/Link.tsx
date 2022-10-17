@@ -12,7 +12,7 @@ const styles = {
       "hover:border-solid",
       "border-b-4",
       "border-yellow-400",
-      "dark:border-blue-400",
+      "dark:border-blue-400"
     ),
 };
 

@@ -26,7 +26,7 @@ const styles = {
     "dark:border-blue-600",
     "dark:hover:border-blue-400",
     "transition-colors",
-    "duration-500",
+    "duration-500"
   ),
 };
 
@@ -37,7 +37,12 @@ interface ButtonProps {
   children: React.ReactNode;
 }
 
-const Button: React.FC<ButtonProps> = ({ href, title, className, children }) => (
+const Button: React.FC<ButtonProps> = ({
+  href,
+  title,
+  className,
+  children,
+}) => (
   <a className={clsx(styles.link, className)} href={href} title={title}>
     {children}
   </a>

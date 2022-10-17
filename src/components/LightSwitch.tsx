@@ -18,7 +18,7 @@ const styles = {
     "px-1",
     "border-t-2",
     "border-yellow-300",
-    "dark:border-blue-700",
+    "dark:border-blue-700"
   ),
   switch: clsx(
     "bg-gray-50",
@@ -32,7 +32,7 @@ const styles = {
     "transition-all",
     "duration-500",
     "translate-x-0",
-    "dark:translate-x-7",
+    "dark:translate-x-7"
   ),
 };
 
