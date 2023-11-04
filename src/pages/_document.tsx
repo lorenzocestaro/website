@@ -13,10 +13,10 @@ const styles = {
   body: clsx(
     "bg-gray-50",
     "dark:bg-gray-900",
-    "text-gray-700",
     "dark:text-gray-300",
+    "duration-500",
+    "text-gray-700",
     "transition-colors",
-    "duration-500"
   ),
 };
 
