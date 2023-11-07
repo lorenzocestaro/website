@@ -2,12 +2,22 @@ import React from "react";
 
 import clsx from "clsx";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { ArrowUpRight } from "react-feather";
 
 import { MENU_ITEMS, SOCIAL_LINKS } from "./constants";
 
 const styles = {
-  link: clsx("flex", "flex-row", "items-center", "text-3xl"),
+  link: (isActive?: boolean) =>
+    clsx(
+      "border-b",
+      "flex-row",
+      "flex",
+      "items-center",
+      "pb-1",
+      "text-3xl",
+      isActive ? "border-gray-900" : "border-transparent",
+    ),
   menu: clsx(
     "flex-col",
     "flex",
@@ -22,13 +32,15 @@ const styles = {
 };
 
 export const OverlayMenu = () => {
+  const { pathname } = useRouter();
+
   return (
     <menu className={styles.menu}>
       <div className={styles.menuItemsContainer}>
         {MENU_ITEMS.map(({ href, label, external }) => (
           <ul key={href} className={styles.menuOption}>
             <Link
-              className={styles.link}
+              className={styles.link(pathname === href)}
               href={href}
               target={external ? "_blank" : undefined}
             >
