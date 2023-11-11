@@ -15,7 +15,23 @@ const getColumns = (width: number) => {
     return 2;
   }
 
-  return 3;
+  if (width < 2000) {
+    return 3;
+  }
+
+  return 4;
+};
+
+const getSpacing = (width: number) => {
+  if (width < 500) {
+    return 10;
+  }
+
+  if (width < 1000) {
+    return 15;
+  }
+
+  return 20;
 };
 
 const styles = {
@@ -43,7 +59,7 @@ export const Gallery: React.FC<GalleryProps> = ({ photos }) => {
         layout="columns"
         photos={photos.map(cloudinaryPhotoToGalleryPhoto)}
         renderPhoto={CloudinaryImage}
-        spacing={10}
+        spacing={getSpacing}
       />
     </div>
   );
