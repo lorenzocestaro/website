@@ -5,7 +5,7 @@ const MOBILE_MAX_WIDTH = 700;
 export const useIsMobile = () => {
   const [isMobile, setIsMobile] = React.useState(true);
 
-  React.useLayoutEffect(() => {
+  React.useEffect(() => {
     setIsMobile(window.innerWidth < MOBILE_MAX_WIDTH);
   }, []);
 
