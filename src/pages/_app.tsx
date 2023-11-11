@@ -7,7 +7,7 @@ import "tailwindcss/tailwind.css";
 
 const App: React.FC<AppProps> = ({ Component, pageProps }) => {
   return (
-    <ThemeProvider enableSystem={false} defaultTheme="dark" attribute="class">
+    <ThemeProvider enableSystem={false} defaultTheme="light" attribute="class">
       <Component {...pageProps} />
     </ThemeProvider>
   );
