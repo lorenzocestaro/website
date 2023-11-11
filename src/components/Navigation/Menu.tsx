@@ -13,6 +13,7 @@ const styles = {
       "border-b",
       "flex-row",
       "flex",
+      "font-display",
       "items-center",
       "pb-1",
       "text-xl",

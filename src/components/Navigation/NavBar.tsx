@@ -37,7 +37,7 @@ export const NavBar: React.FC<NavBarProps> = ({ rightElement }) => {
   return (
     <nav className={styles.container(isMobile)}>
       <Link className={styles.logoType} href="/">
-        LNZ
+        L O R E N Z O
       </Link>
       {rightElement}
     </nav>

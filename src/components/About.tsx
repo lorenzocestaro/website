@@ -11,7 +11,6 @@ const styles = {
     "border-b-4",
     "border-dotted",
     "border-yellow-400",
-    "font-display",
     "hover:border-solid",
     "md:text-xl",
   ),
