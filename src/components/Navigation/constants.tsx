@@ -1,4 +1,4 @@
-import { ArrowUpRight, Instagram, Linkedin } from "react-feather";
+import { Instagram, Linkedin, Mail } from "react-feather";
 
 import { MenuItem, SocialLink } from "./types";
 
@@ -26,5 +26,9 @@ export const SOCIAL_LINKS: SocialLink[] = [
   {
     href: "https://www.instagram.com/lorenzo.cestaro/",
     icon: <Instagram size={20} />,
+  },
+  {
+    href: "mailto:hi@lorenzocestaro.com",
+    icon: <Mail size={20} />,
   },
 ];

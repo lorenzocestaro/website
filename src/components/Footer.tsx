@@ -8,6 +8,7 @@ const styles = {
     "align-baseline",
     "flex-col",
     "flex",
+    "h-20",
     "items-center",
     "justify-center",
     "mb-4",
@@ -32,7 +33,9 @@ const styles = {
 
 export const Footer = () => (
   <footer className={styles.footer}>
-    <p>&copy; 2021 Lorenzo Cestaro</p>
+    <span>
+      <p>&copy; 2023 Lorenzo Cestaro · All rights reserved</p>
+    </span>
     <span className={styles.break}> · </span>
     <span>
       <a
