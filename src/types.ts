@@ -13,3 +13,12 @@ export type CloudinaryPhoto = {
   created_at: string;
   context?: { custom?: PhotoMetadata };
 };
+
+export type Photo = {
+  alt?: string;
+  created_at: string;
+  height: number;
+  id: string;
+  title?: string;
+  width: number;
+};

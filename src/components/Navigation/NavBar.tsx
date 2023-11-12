@@ -20,7 +20,7 @@ const styles = {
   logoType: clsx(
     "align-middle",
     "font-display",
-    "font-semibold",
+    "font-regular",
     "grow",
     "mt-2",
     "text-3xl",

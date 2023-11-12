@@ -11,6 +11,7 @@
   "dependencies": {
     "@cloudinary/react": "^1.11.2",
     "@cloudinary/url-gen": "^1.13.0",
+    "cloudinary": "^1.41.0",
     "clsx": "^2.0.0",
     "framer-motion": "^10.16.4",
     "hamburger-react": "^2.5.0",

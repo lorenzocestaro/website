@@ -13,6 +13,7 @@ const MotionOverlayMenu = motion(OverlayMenu);
 
 const styles = {
   container: clsx("flex", "flex-col", "min-h-screen", "w-screen"),
+  content: clsx("grow"),
 };
 
 export type PageLayoutProps = {
@@ -49,7 +50,7 @@ export const PageLayout: React.FC<PageLayoutProps> = ({ children, title }) => {
           ) : null}
           {!isOpen ? (
             <motion.main
-              className="grow"
+              className={styles.content}
               key="main"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
