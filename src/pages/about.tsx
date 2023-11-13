@@ -10,9 +10,7 @@ const styles = {
 
 const AboutPage: React.FC = () => (
   <PageLayout title="About · Lorenzo Cestaro">
-    <div className={styles.about}>
-      <About />
-    </div>
+    <About />
   </PageLayout>
 );
 

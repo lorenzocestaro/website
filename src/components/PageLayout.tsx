@@ -6,14 +6,14 @@ import { Cross } from "hamburger-react";
 import Head from "next/head";
 
 import { Footer } from "./Footer";
-import { Menu, NavBar, OverlayMenu, useIsMobile } from "./Navigation"; // TODO: move useIsMobile
+import { Menu, NavBar, OverlayMenu, useCollapsedMenu } from "./Navigation";
 
-const MotionFooter = motion(Footer);
+const MotionFooter = motion(React.forwardRef(Footer));
 const MotionOverlayMenu = motion(OverlayMenu);
 
 const styles = {
   container: clsx("flex", "flex-col", "min-h-screen", "w-screen"),
-  content: clsx("grow"),
+  content: clsx("flex", "flex-col", "grow", "justify-center", "items-center"),
 };
 
 export type PageLayoutProps = {
@@ -22,7 +22,7 @@ export type PageLayoutProps = {
 };
 
 export const PageLayout: React.FC<PageLayoutProps> = ({ children, title }) => {
-  const isMobile = useIsMobile();
+  const isMobile = useCollapsedMenu();
   const [isOpen, setIsOpen] = React.useState(false);
 
   return (

@@ -15,10 +15,11 @@ const styles = {
     "md:text-xl",
   ),
   p: clsx("mt-3", "sm:mt-6", "sm:leading-normal", "sm:text-xl"),
+  section: clsx("w-8/12", "xl:w-6/12"),
 };
 
 export const About = () => (
-  <section title="About">
+  <section title="About" className={styles.section}>
     <h1 className={styles.h1}>Hello, my name is</h1>
     <h2 className={styles.h2}>Lorenzo Cestaro</h2>
     <h3 className={styles.h3}>Software engineer and hobby photographer.</h3>
@@ -27,8 +28,7 @@ export const About = () => (
       <Link className={styles.link} href="https://www.klarna.com/careers">
         Klarna
       </Link>
-      , where I am helping to launch a completely new product search experience
-      in the mobile app using{" "}
+      , working on the search experience in the mobile app using{" "}
       <Link className={styles.link} href="https://www.reactjs.org/">
         React
       </Link>

@@ -3,7 +3,7 @@ import React from "react";
 import clsx from "clsx";
 import Link from "next/link";
 
-import { useIsMobile } from "./useIsMobile";
+import { useCollapsedMenu } from "./useCollapsedMenu";
 
 const styles = {
   container: (isMobile: boolean) =>
@@ -32,10 +32,10 @@ export type NavBarProps = {
 };
 
 export const NavBar: React.FC<NavBarProps> = ({ rightElement }) => {
-  const isMobile = useIsMobile();
+  const doUseCollapsedMenu = useCollapsedMenu();
 
   return (
-    <nav className={styles.container(isMobile)}>
+    <nav className={styles.container(doUseCollapsedMenu)}>
       <Link className={styles.logoType} href="/">
         L O R E N Z O
       </Link>
