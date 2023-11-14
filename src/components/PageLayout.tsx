@@ -12,28 +12,51 @@ const MotionFooter = motion(React.forwardRef(Footer));
 const MotionOverlayMenu = motion(OverlayMenu);
 
 const styles = {
-  container: clsx("flex", "flex-col", "min-h-screen", "w-screen"),
-  content: clsx("flex", "flex-col", "grow", "justify-center", "items-center"),
+  container: (viewport?: boolean) =>
+    clsx(
+      "flex",
+      "flex-col",
+      viewport ? "h-screen" : "min-h-screen",
+      "w-screen",
+    ),
+  content: clsx(
+    "flex-col",
+    "flex",
+    "grow",
+    "items-center",
+    "overflow-hidden",
+    "justify-center",
+    "shrink",
+  ),
 };
 
 export type PageLayoutProps = {
   children: React.ReactNode | React.ReactNode[];
   title: string;
+  viewport?: boolean;
 };
 
-export const PageLayout: React.FC<PageLayoutProps> = ({ children, title }) => {
+export const PageLayout: React.FC<PageLayoutProps> = ({
+  children,
+  title,
+  viewport,
+}) => {
   const isMobile = useCollapsedMenu();
   const [isOpen, setIsOpen] = React.useState(false);
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container(viewport)}>
       <Head>
         <title>{title}</title>
       </Head>
 
       <NavBar
         rightElement={
-          isMobile ? <Cross toggled={isOpen} toggle={setIsOpen} /> : <Menu />
+          isMobile ? (
+            <Cross toggled={isOpen} toggle={setIsOpen} size={24} />
+          ) : (
+            <Menu />
+          )
         }
       />
 

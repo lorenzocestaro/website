@@ -3,27 +3,24 @@ import React from "react";
 import clsx from "clsx";
 import Link from "next/link";
 
-import { useCollapsedMenu } from "./useCollapsedMenu";
-
 const styles = {
-  container: (isMobile: boolean) =>
-    clsx(
-      "flex-row",
-      "flex",
-      "justify-between",
-      "pt-8",
-      "px-10",
-      "w-full",
-      isMobile ? "pb-10" : "pb-20",
-      isMobile ? undefined : "items-baseline",
-    ),
+  container: clsx(
+    "flex-row",
+    "flex",
+    "h-28",
+    "2xl:h-40",
+    "items-center",
+    "justify-between",
+    "mb-5",
+    "px-10",
+    "w-full",
+  ),
   logoType: clsx(
-    "align-middle",
     "font-display",
-    "font-regular",
+    "font-medium",
     "grow",
-    "mt-2",
-    "text-3xl",
+    "2xl:text-3xl",
+    "text-2xl",
   ),
 };
 
@@ -32,10 +29,8 @@ export type NavBarProps = {
 };
 
 export const NavBar: React.FC<NavBarProps> = ({ rightElement }) => {
-  const doUseCollapsedMenu = useCollapsedMenu();
-
   return (
-    <nav className={styles.container(doUseCollapsedMenu)}>
+    <nav className={styles.container}>
       <Link className={styles.logoType} href="/">
         L O R E N Z O
       </Link>

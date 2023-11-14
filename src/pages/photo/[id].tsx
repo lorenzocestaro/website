@@ -10,6 +10,7 @@ import { PageLayout } from "src/components";
 import { config } from "src/config";
 import { Photo } from "src/types";
 import { imageResourceToPhoto } from "src/utils";
+import clsx from "clsx";
 
 export const getServerSideProps = (async (context) => {
   context.res.setHeader(
@@ -34,6 +35,10 @@ export const getServerSideProps = (async (context) => {
   };
 }) satisfies GetServerSideProps<PhotoPageProps>;
 
+const styles = {
+  img: clsx("min-h-0", "object-contain", "xl:px-16", "px-4"),
+};
+
 type PhotoPageProps = {
   photo: Photo;
 };
@@ -46,12 +51,12 @@ const PhotoPage: React.FC<PhotoPageProps> = ({ photo }) => {
     .delivery(dpr("auto"));
 
   return (
-    <PageLayout title={`${photo.title || "Photo"} · Lorenzo Cestaro`}>
+    <PageLayout title={`${photo.title || "Photo"} · Lorenzo Cestaro`} viewport>
       <AdvancedImage
         alt={photo.alt}
-        className="m-auto"
         cldImg={image}
         plugins={[placeholder({ mode: "blur" })]}
+        className={styles.img}
       />
     </PageLayout>
   );
