@@ -35,7 +35,7 @@ const getSpacing = (width: number) => {
 };
 
 const styles = {
-  galleryContainer: clsx("px-10", "w-full"),
+  galleryContainer: clsx("w-full"),
 };
 
 const cloudinaryPhotoToGalleryPhoto = (photo: CloudinaryPhoto): Photo => ({

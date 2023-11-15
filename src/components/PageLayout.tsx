@@ -14,10 +14,12 @@ const MotionOverlayMenu = motion(OverlayMenu);
 const styles = {
   container: (viewport?: boolean) =>
     clsx(
-      "flex",
       "flex-col",
-      viewport ? "h-screen" : "min-h-screen",
+      "flex",
+      "lg:px-14",
+      "px-6",
       "w-screen",
+      viewport ? "h-screen" : "min-h-screen",
     ),
   content: clsx(
     "flex-col",

@@ -12,7 +12,6 @@ const styles = {
     "items-center",
     "justify-between",
     "mb-5",
-    "px-10",
     "w-full",
   ),
   logoType: clsx(
