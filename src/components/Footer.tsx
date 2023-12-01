@@ -13,6 +13,7 @@ const styles = {
     "justify-center",
     "mb-4",
     "mt-8",
+    "shrink-0",
     "sm:flex-row",
     "sm:pb-0",
     "sm:space-y-0",

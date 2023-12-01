@@ -12,6 +12,7 @@ const styles = {
     "items-center",
     "justify-between",
     "mb-5",
+    "shrink-0",
     "w-full",
   ),
   logoType: clsx(
