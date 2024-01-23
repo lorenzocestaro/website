@@ -1,19 +1,32 @@
 import React from "react";
 
+import ImageKit from "imagekit";
+import { IKImage } from "imagekitio-react";
 import type { InferGetStaticPropsType, GetStaticProps } from "next";
+import { type Photo } from "react-photo-album";
 
 import { Gallery, PageLayout } from "src/components";
-import { Photo } from "src/types";
-import { getCollectionUrl } from "src/utils";
 import { config } from "src/config";
 
 export const getStaticProps = (async () => {
-  const res = await fetch(getCollectionUrl("homepage"));
+  const imagekit = new ImageKit({
+    publicKey: process.env.IMAGEKIT_PUBLIC_KEY as string,
+    privateKey: process.env.IMAGEKIT_PRIVATE_KEY as string,
+    urlEndpoint: process.env.NEXT_PUBLIC_IMAGEKIT_URL as string,
+  });
 
-  const { resources } = await res.json();
+  const resources = await imagekit.listFiles({ path: "homepage" });
 
   return {
-    props: { photos: resources },
+    props: {
+      photos: resources.map((resource) => ({
+        key: resource.fileId,
+        src: resource.url,
+        width: resource.width,
+        height: resource.height,
+        title: String(resource.customMetadata?.title),
+      })),
+    },
     revalidate: config.collectionPageRevalidate,
   };
 }) satisfies GetStaticProps<{ photos: Photo[] }>;

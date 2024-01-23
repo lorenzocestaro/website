@@ -1,10 +1,11 @@
 import React from "react";
 
 import clsx from "clsx";
-import PhotoAlbum, { type Photo } from "react-photo-album";
-
-import { CloudinaryImage } from "src/components/CloudinaryImage";
-import { CloudinaryPhoto } from "src/types";
+import PhotoAlbum, {
+  RenderPhotoProps,
+  type PhotoAlbumProps,
+} from "react-photo-album";
+import { IKImage } from "imagekitio-react";
 
 const getColumns = (width: number) => {
   if (width < 500) {
@@ -34,20 +35,35 @@ const getSpacing = (width: number) => {
   return 20;
 };
 
+const renderPhoto = ({
+  photo,
+  wrapperStyle,
+  imageProps: { alt, title, sizes, className },
+}: RenderPhotoProps) => {
+  return (
+    <div style={{ ...wrapperStyle, position: "relative" }}>
+      <IKImage
+        key={photo.key}
+        alt={alt}
+        height={photo.height}
+        loading="lazy"
+        lqip={{ active: true }}
+        src={photo.src}
+        title={title}
+        width={photo.width}
+        sizes={sizes}
+        className={className}
+      />
+    </div>
+  );
+};
+
 const styles = {
   galleryContainer: clsx("w-full"),
 };
 
-const cloudinaryPhotoToGalleryPhoto = (photo: CloudinaryPhoto): Photo => ({
-  src: photo.public_id,
-  width: photo.width,
-  height: photo.height,
-  alt: photo?.context?.custom?.alt ?? "",
-  title: photo?.context?.custom?.caption ?? "",
-});
-
 export type GalleryProps = {
-  photos: CloudinaryPhoto[];
+  photos: PhotoAlbumProps["photos"];
 };
 
 export const Gallery: React.FC<GalleryProps> = ({ photos }) => {
@@ -57,8 +73,8 @@ export const Gallery: React.FC<GalleryProps> = ({ photos }) => {
         columns={getColumns}
         defaultContainerWidth={1200}
         layout="columns"
-        photos={photos.map(cloudinaryPhotoToGalleryPhoto)}
-        renderPhoto={CloudinaryImage}
+        photos={photos}
+        renderPhoto={renderPhoto}
         spacing={getSpacing}
       />
     </div>
