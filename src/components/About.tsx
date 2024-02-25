@@ -6,7 +6,7 @@ import Link from "next/link";
 const styles = {
   h1: clsx("font-light", "text-sm", "sm:text-lg"),
   h2: clsx("mt-3", "text-3xl", "sm:text-5xl", "font-display", "font-extrabold"),
-  h3: clsx("text-xl", "sm:text-3xl", "font-display", "font-semibold", "mt-2"),
+  h3: clsx("text-xl", "sm:text-3xl", "font-display", "mt-2"),
   link: clsx(
     "border-b-4",
     "border-dotted",
@@ -20,11 +20,11 @@ const styles = {
 
 export const About = () => (
   <section title="About" className={styles.section}>
-    <h1 className={styles.h1}>Hello, my name is</h1>
-    <h2 className={styles.h2}>Lorenzo Cestaro</h2>
+    <h1 className={styles.h1}>Hello, I&apos;m</h1>
+    <h2 className={styles.h2}>Lorenzo</h2>
     <h3 className={styles.h3}>Software engineer and hobby photographer.</h3>
     <p className={styles.p}>
-      I am currently working at{" "}
+      I work as a senior software engineer at{" "}
       <Link className={styles.link} href="https://www.klarna.com/careers">
         Klarna
       </Link>
@@ -44,28 +44,15 @@ export const About = () => (
     </p>
     <p className={styles.p}>
       I am a self-taught software engineer with 5+ years of experience. In my
-      career I worked in both backend and frontend teams, I have experience
-      across the stack and can add value to engineering teams on multiple
-      levels. I am product oriented and enjoy working in cross functional teams,
-      where I can independently drive initiatives and features.
+      career I collaborated in both backend and frontend teams, I have
+      experience across the stack and can add value to engineering teams on
+      multiple levels. I am product oriented and enjoy working in cross
+      functional teams, where I can independently drive initiatives and
+      features.
     </p>
     <p className={styles.p}>
-      Find me on{" "}
-      <Link
-        className={styles.link}
-        href="https://linkedin.com/in/lorenzocestaro/"
-      >
-        LinkedIn
-      </Link>{" "}
-      and{" "}
-      <Link className={styles.link} href="https://github.com/lorenzocestaro/">
-        GitHub
-      </Link>
-      , or send me an{" "}
-      <Link className={styles.link} href="mailto:hi@lorenzocestaro.com">
-        Email
-      </Link>
-      .
+      I like landscape photography and enjoy taking pictures during my travels,
+      mainly film. You can find my favorite pics here.
     </p>
   </section>
 );
