@@ -1,5 +1,3 @@
-const colors = require("tailwindcss/colors");
-
 module.exports = {
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx}",
@@ -11,9 +9,6 @@ module.exports = {
       fontFamily: {
         sans: ["'Noto Sans'"],
         display: ["Urbanist"],
-      },
-      colors: {
-        blue: colors.sky,
       },
     },
   },
