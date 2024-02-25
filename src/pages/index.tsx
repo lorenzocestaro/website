@@ -1,7 +1,7 @@
 import React from "react";
 
 import ImageKit from "imagekit";
-import { IKImage } from "imagekitio-react";
+import shuffle from "lodash.shuffle";
 import type { InferGetStaticPropsType, GetStaticProps } from "next";
 import { type Photo } from "react-photo-album";
 
@@ -19,13 +19,15 @@ export const getStaticProps = (async () => {
 
   return {
     props: {
-      photos: resources.map((resource) => ({
-        key: resource.fileId,
-        src: resource.url,
-        width: resource.width,
-        height: resource.height,
-        title: String(resource.customMetadata?.title),
-      })),
+      photos: shuffle(
+        resources.map((resource) => ({
+          key: resource.fileId,
+          src: resource.url,
+          width: resource.width,
+          height: resource.height,
+          title: String(resource.customMetadata?.title),
+        })),
+      ),
     },
     revalidate: config.collectionPageRevalidate,
   };

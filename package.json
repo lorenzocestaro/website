@@ -14,6 +14,7 @@
     "hamburger-react": "^2.5.0",
     "imagekit": "^5.0.0",
     "imagekitio-react": "^3.0.0",
+    "lodash.shuffle": "^4.2.0",
     "next": "^14.1.0",
     "next-themes": "^0.2.1",
     "react": "^18.2.0",
@@ -22,6 +23,7 @@
     "react-photo-album": "^2.3.1"
   },
   "devDependencies": {
+    "@types/lodash.shuffle": "^4.2.9",
     "@types/node": "^20.11.16",
     "@types/react": "^18.2.51",
     "@types/react-dom": "^18.2.18",
