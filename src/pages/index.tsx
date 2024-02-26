@@ -6,7 +6,6 @@ import type { InferGetStaticPropsType, GetStaticProps } from "next";
 import { type Photo } from "react-photo-album";
 
 import { Gallery, PageLayout } from "src/components";
-import { config } from "src/config";
 
 export const getStaticProps = (async () => {
   const imagekit = new ImageKit({
@@ -29,7 +28,7 @@ export const getStaticProps = (async () => {
         })),
       ),
     },
-    revalidate: config.collectionPageRevalidate,
+    revalidate: 60 * 5,
   };
 }) satisfies GetStaticProps<{ photos: Photo[] }>;
 

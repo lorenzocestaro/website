@@ -15,7 +15,7 @@ const styles = {
     "md:text-xl",
   ),
   p: clsx("mt-3", "sm:mt-6", "sm:leading-normal", "sm:text-xl"),
-  section: clsx("w-8/12", "xl:w-6/12"),
+  section: clsx("pb-1", "w-8/12", "xl:w-6/12"),
 };
 
 export const About = () => (
@@ -52,7 +52,11 @@ export const About = () => (
     </p>
     <p className={styles.p}>
       I like landscape photography and enjoy taking pictures during my travels,
-      mainly film. You can find my favorite pics here.
+      mainly film. You can find my favorite pics{" "}
+      <Link className={styles.link} href="/">
+        here
+      </Link>
+      .
     </p>
   </section>
 );
