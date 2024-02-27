@@ -52,7 +52,7 @@ export const About = () => (
     </p>
     <p className={styles.p}>
       I like landscape photography and enjoy taking pictures during my travels,
-      mainly film. You can find my favorite pics{" "}
+      mainly film. You can find my favorite shots{" "}
       <Link className={styles.link} href="/">
         here
       </Link>
