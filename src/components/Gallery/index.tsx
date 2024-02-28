@@ -10,6 +10,8 @@ import PhotoAlbum, {
 import Lightbox from "yet-another-react-lightbox";
 import { Zoom } from "yet-another-react-lightbox/plugins";
 
+import { useLightbox } from "./useLightbox";
+
 import "yet-another-react-lightbox/styles.css";
 
 const getColumns = (width: number) => {
@@ -75,7 +77,7 @@ export type GalleryProps = {
 };
 
 export const Gallery: React.FC<GalleryProps> = ({ photos }) => {
-  const [lightboxIndex, setLightboxIndex] = React.useState(-1);
+  const { closeLightbox, lightboxIndex, openLightbox } = useLightbox();
 
   return (
     <div className={styles.galleryContainer}>
@@ -83,13 +85,13 @@ export const Gallery: React.FC<GalleryProps> = ({ photos }) => {
         columns={getColumns}
         defaultContainerWidth={1200}
         layout="columns"
-        onClick={({ index }) => setLightboxIndex(index)}
+        onClick={openLightbox}
         photos={photos}
         renderPhoto={renderPhoto}
         spacing={getSpacing}
       />
       <Lightbox
-        close={() => setLightboxIndex(-1)}
+        close={closeLightbox}
         controller={{ closeOnBackdropClick: true }}
         index={lightboxIndex}
         open={lightboxIndex > -1}
