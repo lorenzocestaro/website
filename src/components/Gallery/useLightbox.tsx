@@ -4,7 +4,7 @@ export const useLightbox = () => {
   const [lightboxIndex, setLightboxIndex] = React.useState(-1);
   const [viewportWidth, setViewportWidth] = React.useState<number>();
 
-  React.useLayoutEffect(() => {
+  React.useEffect(() => {
     const updateViewportWidth = () => {
       setViewportWidth(window.innerWidth);
     };
