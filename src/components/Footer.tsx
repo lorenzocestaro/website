@@ -5,35 +5,38 @@ import clsx from "clsx";
 const styles = {
   break: clsx("hidden sm:block"),
   footer: clsx(
-    "flex",
+    "align-baseline",
     "flex-col",
+    "flex",
+    "h-20",
+    "items-center",
+    "justify-center",
+    "mb-4",
+    "mt-8",
+    "shrink-0",
     "sm:flex-row",
-    "space-y-1",
+    "sm:pb-0",
     "sm:space-y-0",
     "space-x-1",
-    "justify-center",
-    "items-center",
-    "align-baseline",
-    "w-full",
-    "h-16",
-    "mt-8",
-    "pb-4",
-    "sm:pb-0",
+    "space-y-1",
+    "text-gray-400",
     "text-sm",
-    "text-gray-400"
+    "w-full",
   ),
   link: clsx(
-    "border-dotted",
     "border-b-2",
+    "border-dotted",
     "border-gray-400",
+    "cursor:pointer",
     "hover:border-solid",
-    "cursor:pointer"
   ),
 };
 
-const Footer = () => (
+export const Footer = () => (
   <footer className={styles.footer}>
-    <p>&copy; 2021 Lorenzo Cestaro</p>
+    <span>
+      <p>&copy; 2023 Lorenzo Cestaro · All rights reserved</p>
+    </span>
     <span className={styles.break}> · </span>
     <span>
       <a
@@ -52,5 +55,3 @@ const Footer = () => (
     </span>
   </footer>
 );
-
-export default Footer;

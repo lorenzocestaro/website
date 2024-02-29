@@ -1,56 +1,43 @@
 import React from "react";
 
-import clsx from "clsx";
-import Head from "next/head";
+import ImageKit from "imagekit";
+import shuffle from "lodash.shuffle";
+import type { InferGetStaticPropsType, GetStaticProps } from "next";
+import { type Photo } from "react-photo-album";
 
-import About from "src/components/About";
-import Button from "src/components/Button";
-import Footer from "src/components/Footer";
-import LightSwitch from "src/components/LightSwitch";
+import { Gallery, PageLayout } from "src/components";
 
-const styles = {
-  about: clsx("xl:w-1/2", "xl:mt-0", "mt-12", "mx-auto"),
-  button: clsx("xl:m-auto", "mt-16", "mb-8", "mx-auto"),
-  container: clsx(
-    "flex",
-    "flex-col",
-    "items-center",
-    "justify-between",
-    "min-h-screen"
-  ),
-  main: clsx(
-    "flex",
-    "flex-col",
-    "xl:flex-row",
-    "px-8",
-    "md:px-36",
-    "2xl:px-96",
-    "m-auto"
-  ),
-};
+export const getStaticProps = (async () => {
+  const imagekit = new ImageKit({
+    publicKey: process.env.IMAGEKIT_PUBLIC_KEY as string,
+    privateKey: process.env.IMAGEKIT_PRIVATE_KEY as string,
+    urlEndpoint: process.env.NEXT_PUBLIC_IMAGEKIT_URL as string,
+  });
 
-const Home: React.FC = () => (
-  <div className={styles.container}>
-    <Head>
-      <title>Home · Lorenzo Cestaro </title>
-    </Head>
+  const resources = await imagekit.listFiles({ path: "homepage" });
 
-    <main className={styles.main}>
-      <LightSwitch />
-      <div className={styles.about}>
-        <About />
-      </div>
-      <Button
-        className={styles.button}
-        title="Resume"
-        href="https://read.cv/lorenzocestaro"
-      >
-        RESUME
-      </Button>
-    </main>
+  return {
+    props: {
+      photos: shuffle(
+        resources.map((resource) => ({
+          key: resource.fileId,
+          src: resource.url,
+          width: resource.width,
+          height: resource.height,
+          title: String(resource.customMetadata?.title),
+        })),
+      ),
+    },
+    revalidate: 60 * 5,
+  };
+}) satisfies GetStaticProps<{ photos: Photo[] }>;
 
-    <Footer />
-  </div>
+const HomePage: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
+  photos,
+}) => (
+  <PageLayout title="Home · Lorenzo Cestaro">
+    <Gallery photos={photos} />
+  </PageLayout>
 );
 
-export default Home;
+export default HomePage;

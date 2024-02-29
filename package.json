@@ -9,25 +9,36 @@
     "prepare": "husky install"
   },
   "dependencies": {
-    "clsx": "^2.0.0",
-    "next": "^14.0.1",
+    "@vercel/analytics": "^1.2.2",
+    "clsx": "^2.1.0",
+    "framer-motion": "^11.0.3",
+    "hamburger-react": "^2.5.0",
+    "imagekit": "^5.0.0",
+    "imagekitio-react": "^3.0.0",
+    "lodash.shuffle": "^4.2.0",
+    "next": "^14.1.0",
     "next-themes": "^0.2.1",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-feather": "^2.0.10",
+    "react-photo-album": "^2.3.1",
+    "yet-another-react-lightbox": "^3.17.0"
   },
   "devDependencies": {
-    "@types/node": "^20.8.10",
-    "@types/react": "^18.2.34",
-    "autoprefixer": "^10.4.16",
-    "eslint": "8.53.0",
-    "eslint-config-next": "14.0.1",
-    "eslint-config-prettier": "^9.0.0",
-    "husky": "^8.0.3",
-    "lint-staged": "^15.0.2",
-    "postcss": "^8.4.31",
-    "prettier": "^3.0.3",
-    "tailwindcss": "^3.3.5",
-    "typescript": "^5.2.2"
+    "@types/lodash.shuffle": "^4.2.9",
+    "@types/node": "^20.11.16",
+    "@types/react": "^18.2.51",
+    "@types/react-dom": "^18.2.18",
+    "autoprefixer": "^10.4.17",
+    "eslint": "8.56.0",
+    "eslint-config-next": "14.1.0",
+    "eslint-config-prettier": "^9.1.0",
+    "husky": "^9.0.10",
+    "lint-staged": "^15.2.1",
+    "postcss": "^8.4.33",
+    "prettier": "^3.2.4",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5.3.3"
   },
   "lint-staged": {
     "*.{ts,tsx,js}": [
