@@ -1,6 +1,7 @@
 import React from "react";
 
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { IKContext } from "imagekitio-react";
 import { AppProps } from "next/app";
 import { ThemeProvider } from "next-themes";
@@ -14,6 +15,7 @@ const App: React.FC<AppProps> = ({ Component, pageProps }) => {
       <IKContext urlEndpoint={process.env.NEXT_PUBLIC_IMAGEKIT_URL}>
         <Component {...pageProps} />
         <Analytics />
+        <SpeedInsights />
       </IKContext>
     </ThemeProvider>
   );
