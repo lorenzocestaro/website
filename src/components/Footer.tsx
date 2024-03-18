@@ -45,13 +45,6 @@ export const Footer = () => (
       >
         Source code
       </a>
-      <span> · </span>
-      <a
-        className={styles.link}
-        href="https://www.google.com/maps/search/bars+near+me/"
-      >
-        Buy yourself a beer
-      </a>
     </span>
   </footer>
 );
