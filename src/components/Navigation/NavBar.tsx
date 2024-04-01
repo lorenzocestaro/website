@@ -11,7 +11,6 @@ const styles = {
     "2xl:h-40",
     "items-center",
     "justify-between",
-    "mb-5",
     "shrink-0",
     "w-full",
   ),

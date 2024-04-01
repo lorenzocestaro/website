@@ -14,6 +14,21 @@ import { useLightbox } from "./useLightbox";
 
 import "yet-another-react-lightbox/styles.css";
 
+const styles = {
+  galleryContainer: clsx("w-full"),
+  galleryTitle: clsx(
+    "text-2xl",
+    "font-display",
+    "font-thin",
+    "p-20",
+    "w-full",
+    "h-full",
+    "items-center",
+    "justify-center",
+    "flex",
+  ),
+};
+
 const getColumns = (width: number) => {
   if (width < 500) {
     return 1;
@@ -23,7 +38,7 @@ const getColumns = (width: number) => {
     return 2;
   }
 
-  if (width < 2000) {
+  if (width < 1700) {
     return 3;
   }
 
@@ -42,41 +57,50 @@ const getSpacing = (width: number) => {
   return 20;
 };
 
-const renderPhoto = ({
-  photo,
-  wrapperStyle,
-  imageProps: { alt, title, sizes, className, onClick },
-}: RenderPhotoProps) => {
-  return (
-    <div
-      style={{ ...wrapperStyle, position: "relative", cursor: "zoom-in" }}
-      onClick={onClick}
-    >
-      <IKImage
-        key={photo.key}
-        alt={alt}
-        height={photo.height}
-        loading="lazy"
-        lqip={{ active: true }}
-        src={photo.src}
-        title={title}
-        width={photo.width}
-        sizes={sizes}
-        className={className}
-      />
-    </div>
-  );
-};
-
-const styles = {
-  galleryContainer: clsx("w-full"),
+const createRenderPhoto = (galleryTitle?: string) => {
+  return function renderPhoto({
+    photo,
+    wrapperStyle,
+    layout,
+    imageProps: { alt, title, sizes, className, onClick },
+  }: RenderPhotoProps) {
+    if (galleryTitle && layout.photoIndex === 0 && layout.index === 0) {
+      return (
+        <div
+          style={{ ...wrapperStyle, position: "relative", cursor: "default" }}
+        >
+          <h1 className={styles.galleryTitle}>{galleryTitle}</h1>
+        </div>
+      );
+    }
+    return (
+      <div
+        style={{ ...wrapperStyle, position: "relative", cursor: "zoom-in" }}
+        onClick={onClick}
+      >
+        <IKImage
+          key={photo.key}
+          alt={alt}
+          height={photo.height}
+          loading="lazy"
+          lqip={{ active: true }}
+          src={photo.src}
+          title={title}
+          width={photo.width}
+          sizes={sizes}
+          className={className}
+        />
+      </div>
+    );
+  };
 };
 
 export type GalleryProps = {
+  title?: string;
   photos: PhotoAlbumProps["photos"];
 };
 
-export const Gallery: React.FC<GalleryProps> = ({ photos }) => {
+export const Gallery: React.FC<GalleryProps> = ({ title, photos }) => {
   const { closeLightbox, lightboxIndex, openLightbox } = useLightbox();
 
   return (
@@ -86,8 +110,11 @@ export const Gallery: React.FC<GalleryProps> = ({ photos }) => {
         defaultContainerWidth={1200}
         layout="columns"
         onClick={openLightbox}
-        photos={photos}
-        renderPhoto={renderPhoto}
+        photos={[
+          ...(title ? [{ src: "TITLE", width: 3, height: 2 }] : []),
+          ...photos,
+        ]}
+        renderPhoto={createRenderPhoto(title)}
         spacing={getSpacing}
       />
       <Lightbox
