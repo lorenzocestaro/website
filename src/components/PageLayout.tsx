@@ -50,6 +50,11 @@ export const PageLayout: React.FC<PageLayoutProps> = ({
     <div className={styles.container(viewport)}>
       <Head>
         <title>{title}</title>
+        <meta
+          name="description"
+          content="Software engineer and amateur photographer."
+          key="desc"
+        />
       </Head>
 
       <NavBar
