@@ -388,6 +388,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/regenerator-runtime@npm:^0":
+  version: 0.13.8
+  resolution: "@types/regenerator-runtime@npm:0.13.8"
+  checksum: 10c0/10c094584c097aec51a29f598425306febab764f054db14d5dd892961bf97c96272d620af5bd6e4c5f7d20c4e5b9ce98b6069b0f009cfc57f54614b33760b86e
+  languageName: node
+  linkType: hard
+
 "@types/scheduler@npm:*":
   version: 0.16.2
   resolution: "@types/scheduler@npm:0.16.2"
@@ -4380,12 +4387,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-photo-album@npm:^2.4.1":
-  version: 2.4.1
-  resolution: "react-photo-album@npm:2.4.1"
+"react-photo-album@npm:^3.0.2":
+  version: 3.0.2
+  resolution: "react-photo-album@npm:3.0.2"
   peerDependencies:
-    react: ">=16.8.0"
-  checksum: 10c0/8342eebe24d4eadf62a099edf13ade02618556d189c3c5c7ef537deb3ba518342ac7322753b3ac23749a8af52830dd40d9aba6391d0df8ff419979a8eecfa5a8
+    "@types/react": ">=18"
+    react: ">=18"
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
+  checksum: 10c0/2c2ff12680079adde8a121bff3c26c3794f5bd64e1ca284d9a4228bb5565f9ea811dab86a9f1f4f11ce79d29dafbff331fc26dc226e2e1bbe1c49771f1cefa40
   languageName: node
   linkType: hard
 
@@ -4442,6 +4453,13 @@ __metadata:
     gopd: "npm:^1.0.1"
     which-builtin-type: "npm:^1.1.4"
   checksum: 10c0/841814f7631b55ee42e198cb14a5c25c0752431ab8f0ad9794c32d46ab9fb0d5ba4939edac1f99a174a21443a1400a72bccbbb9ccd9277e4b4bf6d14aabb31c8
+  languageName: node
+  linkType: hard
+
+"regenerator-runtime@npm:^0.14.1":
+  version: 0.14.1
+  resolution: "regenerator-runtime@npm:0.14.1"
+  checksum: 10c0/1b16eb2c4bceb1665c89de70dcb64126a22bc8eb958feef3cd68fe11ac6d2a4899b5cd1b80b0774c7c03591dc57d16631a7f69d2daa2ec98100e2f29f7ec4cc4
   languageName: node
   linkType: hard
 
@@ -4621,6 +4639,7 @@ __metadata:
     "@types/node": "npm:^20.17.7"
     "@types/react": "npm:^18.3.12"
     "@types/react-dom": "npm:^18.3.1"
+    "@types/regenerator-runtime": "npm:^0"
     "@vercel/analytics": "npm:^1.4.1"
     "@vercel/speed-insights": "npm:^1.1.0"
     autoprefixer: "npm:^10.4.20"
@@ -4642,7 +4661,8 @@ __metadata:
     react: "npm:^18.3.1"
     react-dom: "npm:^18.3.1"
     react-feather: "npm:^2.0.10"
-    react-photo-album: "npm:^2.4.1"
+    react-photo-album: "npm:^3.0.2"
+    regenerator-runtime: "npm:^0.14.1"
     tailwindcss: "npm:^3.4.15"
     typescript: "npm:~5.6.3"
     yet-another-react-lightbox: "npm:^3.21.7"

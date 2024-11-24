@@ -3,15 +3,18 @@ import React from "react";
 import clsx from "clsx";
 import { ChevronLeft, ChevronRight, X, ZoomIn, ZoomOut } from "react-feather";
 import { IKImage } from "imagekitio-react";
-import PhotoAlbum, {
+import {
+  ColumnsPhotoAlbum,
+  RenderPhotoContext,
   RenderPhotoProps,
-  type PhotoAlbumProps,
+  type ColumnsPhotoAlbumProps,
 } from "react-photo-album";
 import Lightbox from "yet-another-react-lightbox";
 import { Zoom } from "yet-another-react-lightbox/plugins";
 
 import { useLightbox } from "./useLightbox";
 
+import "react-photo-album/columns.css";
 import "yet-another-react-lightbox/styles.css";
 
 const getColumns = (width: number) => {
@@ -42,29 +45,23 @@ const getSpacing = (width: number) => {
   return 20;
 };
 
-const renderPhoto = ({
-  photo,
-  wrapperStyle,
-  imageProps: { alt, title, sizes, className, onClick },
-}: RenderPhotoProps) => {
+const renderImage = (
+  { onClick }: RenderPhotoProps,
+  { photo }: RenderPhotoContext,
+) => {
   return (
-    <div
-      style={{ ...wrapperStyle, position: "relative", cursor: "zoom-in" }}
+    <IKImage
+      alt={photo.alt}
+      height={photo.height}
+      key={photo.key}
+      loading="lazy"
+      lqip={{ active: true }}
       onClick={onClick}
-    >
-      <IKImage
-        key={photo.key}
-        alt={alt}
-        height={photo.height}
-        loading="lazy"
-        lqip={{ active: true }}
-        src={photo.src}
-        title={title}
-        width={photo.width}
-        sizes={sizes}
-        className={className}
-      />
-    </div>
+      src={photo.src}
+      style={{ width: "100%", cursor: "zoom-in" }}
+      title={photo.title}
+      width={photo.width}
+    />
   );
 };
 
@@ -73,7 +70,7 @@ const styles = {
 };
 
 export type GalleryProps = {
-  photos: PhotoAlbumProps["photos"];
+  photos: ColumnsPhotoAlbumProps["photos"];
 };
 
 export const Gallery: React.FC<GalleryProps> = ({ photos }) => {
@@ -81,13 +78,12 @@ export const Gallery: React.FC<GalleryProps> = ({ photos }) => {
 
   return (
     <div className={styles.galleryContainer}>
-      <PhotoAlbum
+      <ColumnsPhotoAlbum
         columns={getColumns}
         defaultContainerWidth={1200}
-        layout="columns"
         onClick={openLightbox}
         photos={photos}
-        renderPhoto={renderPhoto}
+        render={{ photo: renderImage }}
         spacing={getSpacing}
       />
       <Lightbox
