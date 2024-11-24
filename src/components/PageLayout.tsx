@@ -1,15 +1,15 @@
 import React from "react";
 
 import clsx from "clsx";
-import { motion, AnimatePresence, LayoutGroup } from "framer-motion";
+import { motion, AnimatePresence, LayoutGroup } from "motion/react";
 import { Cross } from "hamburger-react";
 import Head from "next/head";
 
 import { Footer } from "./Footer";
 import { Menu, NavBar, OverlayMenu, useCollapsedMenu } from "./Navigation";
 
-const MotionFooter = motion(React.forwardRef(Footer));
-const MotionOverlayMenu = motion(OverlayMenu);
+const MotionFooter = motion.create(React.forwardRef(Footer));
+const MotionOverlayMenu = motion.create(React.forwardRef(OverlayMenu));
 
 const styles = {
   container: (viewport?: boolean) =>
