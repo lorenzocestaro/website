@@ -4,7 +4,7 @@ import { MenuItem, SocialLink } from "./types";
 
 export const MENU_ITEMS: MenuItem[] = [
   {
-    href: "/",
+    href: "/photography",
     label: "Photography",
   },
   {
