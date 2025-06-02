@@ -6,6 +6,7 @@ import type { InferGetStaticPropsType, GetStaticProps } from "next";
 import { type Photo } from "react-photo-album";
 
 import { Gallery, PageLayout } from "src/components";
+import { FileObject } from "imagekit/dist/libs/interfaces";
 
 export const getStaticProps = (async () => {
   const imagekit = new ImageKit({
@@ -14,21 +15,28 @@ export const getStaticProps = (async () => {
     urlEndpoint: process.env.NEXT_PUBLIC_IMAGEKIT_URL as string,
   });
 
-  const resources = await imagekit.listFiles({ path: "homepage" });
+  const resources = await imagekit.listFiles({
+    path: "homepage",
+    type: "file",
+  });
 
   return {
     props: {
       photos: shuffle(
-        resources.map((resource) => ({
-          key: resource.fileId,
-          src: resource.url,
-          width: resource.width,
-          height: resource.height,
-          title: String(resource.customMetadata?.title),
-        })),
+        resources
+          .filter(
+            (resource): resource is FileObject => resource.type === "file",
+          )
+          .map((resource) => ({
+            key: resource.fileId,
+            src: resource.url,
+            width: resource.width,
+            height: resource.height,
+            title: String(resource.customMetadata?.title),
+          })),
       ),
     },
-    revalidate: 60 * 5,
+    revalidate: 60 * 15,
   };
 }) satisfies GetStaticProps<{ photos: Photo[] }>;
 
