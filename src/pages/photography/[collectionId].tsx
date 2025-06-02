@@ -9,6 +9,7 @@ import { Gallery as PhotoGallery, PageLayout } from "src/components";
 import { type Photo } from "react-photo-album";
 import { FileObject } from "imagekit/dist/libs/interfaces";
 import clsx from "clsx";
+import shuffle from "lodash.shuffle";
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const imagekit = new ImageKit({
@@ -44,18 +45,20 @@ export const getStaticProps: GetStaticProps<{
   const resources = await imagekit.listFiles({
     path: `collections/${collectionId}`,
   });
-  const photos = resources
-    .filter(
-      (resource): resource is FileObject =>
-        resource.type === "file" && resource.isPrivateFile === false,
-    )
-    .map((resource) => ({
-      key: resource.fileId,
-      src: resource.url,
-      width: resource.width,
-      height: resource.height,
-      title: String(resource.customMetadata?.title),
-    }));
+  const photos = shuffle(
+    resources
+      .filter(
+        (resource): resource is FileObject =>
+          resource.type === "file" && resource.isPrivateFile === false,
+      )
+      .map((resource) => ({
+        key: resource.fileId,
+        src: resource.url,
+        width: resource.width,
+        height: resource.height,
+        title: String(resource.customMetadata?.title),
+      })),
+  );
 
   return {
     props: {
