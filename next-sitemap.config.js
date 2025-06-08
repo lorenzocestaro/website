@@ -1,6 +1,6 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-  siteUrl: `https://${process.env.VERCEL_URL}`,
+  siteUrl: process.env.SITE_URL,
   generateRobotsTxt: true,
   changefreq: "monthly",
   generateIndexSitemap: false,
