@@ -115,3 +115,7 @@ $RECYCLE.BIN/
 # End of https://www.toptal.com/developers/gitignore/api/nextjs,yarn,macos,windows
 
 .env
+
+/public/robots.txt
+/public/sitemap.xml
+/public/sitemap-*.xml
