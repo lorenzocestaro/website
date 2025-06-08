@@ -33,12 +33,6 @@ export const getStaticProps: GetStaticProps<{
   const collections: Collection[] = await Promise.all(
     folders
       .filter((file) => file.type === "folder")
-      .map((folder, index) => {
-        if (index === 0) {
-          console.log({ folder });
-        }
-        return folder;
-      })
       .map(async (folder) => {
         const items = await imagekit.listFiles({ path: folder.folderPath });
         const cover =
