@@ -11,11 +11,6 @@ export const MENU_ITEMS: MenuItem[] = [
     href: "/about",
     label: "About",
   },
-  {
-    href: "https://read.cv/lorenzocestaro",
-    label: "Resume",
-    external: true,
-  },
 ];
 
 export const SOCIAL_LINKS: SocialLink[] = [
