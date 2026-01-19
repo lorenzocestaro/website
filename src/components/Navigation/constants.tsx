@@ -19,7 +19,7 @@ export const SOCIAL_LINKS: SocialLink[] = [
     icon: <Linkedin size={20} />,
   },
   {
-    href: "https://www.instagram.com/lorenzo.cestaro/",
+    href: "https://www.instagram.com/renso.cst/",
     icon: <Instagram size={20} />,
   },
   {
