@@ -11,12 +11,12 @@
     "prepare": "husky"
   },
   "dependencies": {
+    "@imagekit/nodejs": "^7.12.1",
+    "@imagekit/react": "^5.0.3",
     "@vercel/analytics": "^2.0.1",
     "@vercel/speed-insights": "^2.0.0",
     "clsx": "^2.1.1",
     "hamburger-react": "^2.5.2",
-    "imagekit": "^6.0.0",
-    "imagekitio-react": "^4.3.0",
     "lodash.shuffle": "^4.2.0",
     "motion": "^14.0.0",
     "next": "^16.3.8",
@@ -26,7 +26,6 @@
     "react-dom": "^19.3.0",
     "react-feather": "^2.0.10",
     "react-photo-album": "^3.6.1",
-    "regenerator-runtime": "^0.14.1",
     "yet-another-react-lightbox": "^3.32.2"
   },
   "devDependencies": {
@@ -35,7 +34,6 @@
     "@types/node": "^24.19.1",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
-    "@types/regenerator-runtime": "^0",
     "eslint": "9.39.5",
     "eslint-config-next": "16.3.8",
     "eslint-config-prettier": "^10.1.8",

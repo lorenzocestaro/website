@@ -1,5 +1,5 @@
 import React from "react";
-import ImageKit from "imagekit";
+import ImageKit from "@imagekit/nodejs";
 import type {
   GetStaticPaths,
   GetStaticProps,
@@ -7,25 +7,21 @@ import type {
 } from "next";
 import { Gallery as PhotoGallery, PageLayout } from "src/components";
 import { type Photo } from "react-photo-album";
-import { FileObject } from "imagekit/dist/libs/interfaces";
+import { isNamedFolder, isPhotoFile, toPhoto } from "src/lib/imagekit";
 import clsx from "clsx";
 import shuffle from "lodash.shuffle";
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const imagekit = new ImageKit({
-    publicKey: process.env.IMAGEKIT_PUBLIC_KEY as string,
-    privateKey: process.env.IMAGEKIT_PRIVATE_KEY as string,
-    urlEndpoint: process.env.NEXT_PUBLIC_IMAGEKIT_URL as string,
-  });
+  const imagekit = new ImageKit();
 
-  const folders = await imagekit.listFiles({
+  const folders = await imagekit.assets.list({
     path: "collections",
     type: "folder",
   });
 
   return {
     paths: folders
-      .filter((folder) => folder.type === "folder")
+      .filter(isNamedFolder)
       .map((folder) => ({ params: { collectionId: folder.name } })),
     fallback: false,
   };
@@ -35,29 +31,20 @@ export const getStaticProps: GetStaticProps<{
   collectionName: string;
   photos: Photo[];
 }> = async (context) => {
-  const imagekit = new ImageKit({
-    publicKey: process.env.IMAGEKIT_PUBLIC_KEY as string,
-    privateKey: process.env.IMAGEKIT_PRIVATE_KEY as string,
-    urlEndpoint: process.env.NEXT_PUBLIC_IMAGEKIT_URL as string,
-  });
+  const imagekit = new ImageKit();
 
   const collectionId = context.params?.collectionId as string;
-  const resources = await imagekit.listFiles({
+  const resources = await imagekit.assets.list({
     path: `collections/${collectionId}`,
   });
   const photos = shuffle(
     resources
       .filter(
-        (resource): resource is FileObject =>
+        (resource): resource is ImageKit.File =>
           resource.type === "file" && resource.isPrivateFile === false,
       )
-      .map((resource) => ({
-        key: resource.fileId,
-        src: resource.url,
-        width: resource.width,
-        height: resource.height,
-        title: String(resource.customMetadata?.title),
-      })),
+      .filter(isPhotoFile)
+      .map(toPhoto),
   );
 
   return {
