@@ -2,7 +2,7 @@ import React from "react";
 
 import clsx from "clsx";
 import { ChevronLeft, ChevronRight, X, ZoomIn, ZoomOut } from "react-feather";
-import { IKImage } from "imagekitio-react";
+import { Image } from "@imagekit/react";
 import {
   ColumnsPhotoAlbum,
   RenderPhotoContext,
@@ -50,12 +50,12 @@ const renderImage = (
   { photo }: RenderPhotoContext,
 ) => {
   return (
-    <IKImage
+    <Image
       alt={photo.alt}
       height={photo.height}
       key={photo.key}
       loading="lazy"
-      lqip={{ active: true }}
+      responsive={false}
       onClick={onClick}
       src={photo.src}
       style={{ width: "100%", cursor: "zoom-in" }}
