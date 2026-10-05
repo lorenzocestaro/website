@@ -8,8 +8,8 @@ import Head from "next/head";
 import { Footer } from "./Footer";
 import { Menu, NavBar, OverlayMenu, useCollapsedMenu } from "./Navigation";
 
-const MotionFooter = motion.create(React.forwardRef(Footer));
-const MotionOverlayMenu = motion.create(React.forwardRef(OverlayMenu));
+const MotionFooter = motion.create(Footer);
+const MotionOverlayMenu = motion.create(OverlayMenu);
 
 const styles = {
   container: (viewport?: boolean) =>
