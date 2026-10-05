@@ -1,40 +1,24 @@
 import React from "react";
 
-import ImageKit from "imagekit";
+import ImageKit from "@imagekit/nodejs";
 import shuffle from "lodash.shuffle";
 import type { InferGetStaticPropsType, GetStaticProps } from "next";
 import { type Photo } from "react-photo-album";
 
 import { Gallery, PageLayout } from "src/components";
-import { FileObject } from "imagekit/dist/libs/interfaces";
+import { isPhotoFile, toPhoto } from "src/lib/imagekit";
 
 export const getStaticProps = (async () => {
-  const imagekit = new ImageKit({
-    publicKey: process.env.IMAGEKIT_PUBLIC_KEY as string,
-    privateKey: process.env.IMAGEKIT_PRIVATE_KEY as string,
-    urlEndpoint: process.env.NEXT_PUBLIC_IMAGEKIT_URL as string,
-  });
+  const imagekit = new ImageKit();
 
-  const resources = await imagekit.listFiles({
+  const resources = await imagekit.assets.list({
     path: "homepage",
     type: "file",
   });
 
   return {
     props: {
-      photos: shuffle(
-        resources
-          .filter(
-            (resource): resource is FileObject => resource.type === "file",
-          )
-          .map((resource) => ({
-            key: resource.fileId,
-            src: resource.url,
-            width: resource.width,
-            height: resource.height,
-            title: String(resource.customMetadata?.title),
-          })),
-      ),
+      photos: shuffle(resources.filter(isPhotoFile).map(toPhoto)),
     },
     revalidate: 60 * 15,
   };
