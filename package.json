@@ -7,7 +7,7 @@
     "start": "next start",
     "lint": "next lint",
     "prettier": "npx prettier --ignore-path .gitignore --write",
-    "prepare": "husky install"
+    "prepare": "husky"
   },
   "dependencies": {
     "@vercel/analytics": "^1.4.1",
