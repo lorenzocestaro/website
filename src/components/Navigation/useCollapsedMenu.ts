@@ -2,24 +2,17 @@ import React from "react";
 
 const MOBILE_MAX_WIDTH = 800;
 
-export const useCollapsedMenu = () => {
-  const [doUseCollapsedMenu, setDoUseCollapsedMenu] = React.useState(true);
+const subscribe = (onChange: () => void) => {
+  window.addEventListener("resize", onChange);
 
-  React.useEffect(() => {
-    setDoUseCollapsedMenu(window.innerWidth < MOBILE_MAX_WIDTH);
-  }, []);
-
-  React.useEffect(() => {
-    const handleWindowResize = () => {
-      setDoUseCollapsedMenu(window.innerWidth < MOBILE_MAX_WIDTH);
-    };
-
-    window.addEventListener("resize", handleWindowResize);
-
-    return () => {
-      window.removeEventListener("resize", handleWindowResize);
-    };
-  }, []);
-
-  return doUseCollapsedMenu;
+  return () => {
+    window.removeEventListener("resize", onChange);
+  };
 };
+
+const getSnapshot = () => window.innerWidth < MOBILE_MAX_WIDTH;
+
+const getServerSnapshot = () => true;
+
+export const useCollapsedMenu = () =>
+  React.useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
