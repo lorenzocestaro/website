@@ -30,12 +30,12 @@
     "yet-another-react-lightbox": "^3.32.2"
   },
   "devDependencies": {
+    "@tailwindcss/postcss": "^4.3.3",
     "@types/lodash.shuffle": "^4.2.9",
     "@types/node": "^24.19.1",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
     "@types/regenerator-runtime": "^0",
-    "autoprefixer": "^10.6.1",
     "eslint": "9.39.5",
     "eslint-config-next": "16.3.8",
     "eslint-config-prettier": "^10.1.8",
@@ -43,7 +43,7 @@
     "lint-staged": "^17.6.0",
     "postcss": "^8.5.28",
     "prettier": "^3.9.9",
-    "tailwindcss": "^3.4.15",
+    "tailwindcss": "^4.3.3",
     "typescript": "~5.6.3"
   },
   "lint-staged": {

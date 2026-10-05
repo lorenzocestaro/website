@@ -7,7 +7,7 @@ import { AppProps } from "next/app";
 import { ThemeProvider } from "next-themes";
 
 import "regenerator-runtime/runtime"; // Needed for imagekitio-react
-import "tailwindcss/tailwind.css";
+import "../globals.css";
 
 const App: React.FC<AppProps> = ({ Component, pageProps }) => {
   return (
