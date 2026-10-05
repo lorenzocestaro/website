@@ -1,10 +1,11 @@
 import React from "react";
-import ImageKit from "imagekit";
+import ImageKit from "@imagekit/nodejs";
 import type { GetStaticProps, InferGetStaticPropsType } from "next";
 import { PageLayout } from "src/components";
 import Link from "next/link";
 import clsx from "clsx";
-import { IKImage } from "imagekitio-react";
+import { Image } from "@imagekit/react";
+import { isNamedFolder } from "src/lib/imagekit";
 
 export type Collection = {
   id: string;
@@ -17,41 +18,35 @@ export type Collection = {
 export const getStaticProps: GetStaticProps<{
   collections: Collection[];
 }> = async () => {
-  const imagekit = new ImageKit({
-    publicKey: process.env.IMAGEKIT_PUBLIC_KEY as string,
-    privateKey: process.env.IMAGEKIT_PRIVATE_KEY as string,
-    urlEndpoint: process.env.NEXT_PUBLIC_IMAGEKIT_URL as string,
-  });
+  const imagekit = new ImageKit();
 
   // List all subfolders in the 'galleries' folder
-  const folders = await imagekit.listFiles({
+  const folders = await imagekit.assets.list({
     path: "collections",
     type: "folder",
   });
 
   // For each folder, get the first image as cover and count items
   const collections: Collection[] = await Promise.all(
-    folders
-      .filter((file) => file.type === "folder")
-      .map(async (folder) => {
-        const items = await imagekit.listFiles({ path: folder.folderPath });
-        const cover =
-          items.find(
-            (file) =>
-              file.type === "file" && file.tags && file.tags.includes("cover"),
-          ) || items.find((file) => file.type === "file");
-        return {
-          id: folder.name,
-          displayName: folder.name
-            .replace("-", " ")
-            .split(" ")
-            .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-            .join(" "),
-          coverUrl: cover && "url" in cover ? cover.url : "",
-          coverWidth: cover && "width" in cover ? cover?.width : 600,
-          coverHeight: cover && "height" in cover ? cover?.height : 320,
-        };
-      }),
+    folders.filter(isNamedFolder).map(async ({ name, folderPath }) => {
+      const files = await imagekit.assets.list({
+        path: folderPath,
+        type: "file",
+      });
+      const cover =
+        files.find((file) => file.tags?.includes("cover")) ?? files[0];
+      return {
+        id: name,
+        displayName: name
+          .replace("-", " ")
+          .split(" ")
+          .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+          .join(" "),
+        coverUrl: cover?.url ?? "",
+        coverWidth: cover?.width ?? 600,
+        coverHeight: cover?.height ?? 320,
+      };
+    }),
   );
 
   return {
@@ -97,12 +92,12 @@ const PhotographyCollectionsPage: React.FC<
             >
               {collection.coverUrl && (
                 <div className={styles.collectionCoverContainer}>
-                  <IKImage
+                  <Image
                     className={styles.collectionCoverImage}
                     alt={collection.displayName}
                     height={collection.coverHeight}
                     loading="lazy"
-                    lqip={{ active: true }}
+                    responsive={false}
                     src={collection.coverUrl}
                     title={collection.displayName}
                     width={collection.coverWidth}
