@@ -1,4 +1,5 @@
 module.exports = {
+  agentRules: false,
   images: {
     remotePatterns: [
       {
