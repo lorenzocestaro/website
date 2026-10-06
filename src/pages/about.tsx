@@ -1,9 +1,25 @@
 import React from "react";
 
-import { About, PageLayout } from "src/components";
+import type { GetStaticProps, InferGetStaticPropsType } from "next";
 
-const AboutPage: React.FC = () => (
-  <PageLayout title="About · Lorenzo Cestaro">
+import { About, PageLayout } from "src/components";
+import { getShareImageUrl } from "src/lib/imagekit";
+
+export const getStaticProps: GetStaticProps<{
+  shareImageUrl: string;
+}> = async () => ({
+  props: { shareImageUrl: await getShareImageUrl("homepage") },
+  revalidate: 60 * 15,
+});
+
+const AboutPage: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
+  shareImageUrl,
+}) => (
+  <PageLayout
+    title="About · Lorenzo Cestaro"
+    description="Software engineer and hobby photographer."
+    shareImageUrl={shareImageUrl}
+  >
     <About />
   </PageLayout>
 );

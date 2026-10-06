@@ -7,7 +7,13 @@ import type {
 } from "next";
 import { Gallery as PhotoGallery, PageLayout } from "src/components";
 import { type Photo } from "react-photo-album";
-import { isNamedFolder, isPhotoFile, toPhoto } from "src/lib/imagekit";
+import {
+  isNamedFolder,
+  isPhotoFile,
+  pickCover,
+  toPhoto,
+  toShareImageUrl,
+} from "src/lib/imagekit";
 import clsx from "clsx";
 import shuffle from "lodash.shuffle";
 
@@ -29,6 +35,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps<{
   collectionName: string;
+  shareImageUrl: string;
   photos: Photo[];
 }> = async (context) => {
   const imagekit = new ImageKit();
@@ -37,19 +44,18 @@ export const getStaticProps: GetStaticProps<{
   const resources = await imagekit.assets.list({
     path: `collections/${collectionId}`,
   });
-  const photos = shuffle(
-    resources
-      .filter(
-        (resource): resource is ImageKit.File =>
-          resource.type === "file" && resource.isPrivateFile === false,
-      )
-      .filter(isPhotoFile)
-      .map(toPhoto),
-  );
+  const files = resources
+    .filter(
+      (resource): resource is ImageKit.File =>
+        resource.type === "file" && resource.isPrivateFile === false,
+    )
+    .filter(isPhotoFile);
+  const photos = shuffle(files.map(toPhoto));
 
   return {
     props: {
       photos,
+      shareImageUrl: toShareImageUrl(pickCover(files)),
       collectionName: collectionId
         .replace(/[-_]/g, " ")
         .split(" ")
@@ -75,9 +81,14 @@ const styles = {
 
 const GalleryPage: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
   collectionName,
+  shareImageUrl,
   photos,
 }) => (
-  <PageLayout title={collectionName + " · Lorenzo Cestaro"}>
+  <PageLayout
+    title={collectionName + " · Lorenzo Cestaro"}
+    description={`Photographs from ${collectionName}.`}
+    shareImageUrl={shareImageUrl}
+  >
     <div className={styles.headerContainer}>
       <h1 className={styles.title}>{collectionName}</h1>
     </div>
