@@ -18,7 +18,7 @@ const styles = {
       "flex",
       "lg:px-14",
       "px-6",
-      "w-screen",
+      "w-full",
       viewport ? "h-screen" : "min-h-screen",
     ),
   content: clsx(
