@@ -1,13 +1,7 @@
 import React from "react";
 
 import clsx from "clsx";
-import Document, {
-  DocumentContext,
-  Html,
-  Head,
-  Main,
-  NextScript,
-} from "next/document";
+import Document, { Html, Head, Main, NextScript } from "next/document";
 
 const styles = {
   body: clsx(
@@ -21,12 +15,6 @@ const styles = {
 };
 
 class MyDocument extends Document {
-  static async getInitialProps(ctx: DocumentContext) {
-    const initialProps = await Document.getInitialProps(ctx);
-
-    return initialProps;
-  }
-
   render() {
     return (
       <Html>
