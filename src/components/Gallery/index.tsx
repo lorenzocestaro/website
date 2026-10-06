@@ -5,12 +5,13 @@ import { ChevronLeft, ChevronRight, X, ZoomIn, ZoomOut } from "react-feather";
 import Image from "next/image";
 import {
   ColumnsPhotoAlbum,
-  type ColumnsPhotoAlbumProps,
   type RenderImageContext,
   type RenderImageProps,
 } from "react-photo-album";
 import Lightbox from "yet-another-react-lightbox";
 import { Zoom } from "yet-another-react-lightbox/plugins";
+
+import type { GalleryPhoto } from "src/lib/imagekit";
 
 import { useLightbox } from "./useLightbox";
 
@@ -47,12 +48,13 @@ const getSpacing = (width: number) => {
 
 const renderImage = (
   { alt = "", title, sizes, className, style }: RenderImageProps,
-  { photo }: RenderImageContext,
+  { photo }: RenderImageContext<GalleryPhoto>,
 ) => (
   <Image
     alt={alt}
     className={className}
     height={photo.height}
+    placeholder={photo.placeholder ?? "empty"}
     sizes={sizes}
     src={photo.src}
     style={style}
@@ -72,7 +74,7 @@ const styles = {
 };
 
 export type GalleryProps = {
-  photos: ColumnsPhotoAlbumProps["photos"];
+  photos: GalleryPhoto[];
 };
 
 export const Gallery: React.FC<GalleryProps> = ({ photos }) => {

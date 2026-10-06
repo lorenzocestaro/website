@@ -5,8 +5,8 @@ import type {
   InferGetStaticPropsType,
 } from "next";
 import { Gallery as PhotoGallery, PageLayout } from "src/components";
-import { type Photo } from "react-photo-album";
 import {
+  type GalleryPhoto,
   listCollectionIds,
   listPhotos,
   pickCover,
@@ -27,14 +27,14 @@ export const getStaticPaths: GetStaticPaths = async () => ({
 export const getStaticProps: GetStaticProps<{
   collectionName: string;
   shareImageUrl: string;
-  photos: Photo[];
+  photos: GalleryPhoto[];
 }> = async (context) => {
   const collectionId = context.params?.collectionId as string;
   const files = await listPhotos(`collections/${collectionId}`);
 
   return {
     props: {
-      photos: shuffle(files.map(toPhoto)),
+      photos: shuffle(await Promise.all(files.map(toPhoto))),
       shareImageUrl: toShareImageUrl(pickCover(files)),
       collectionName: toCollectionName(collectionId),
     },
