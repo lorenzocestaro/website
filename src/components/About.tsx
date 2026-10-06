@@ -19,16 +19,16 @@ const styles = {
 };
 
 export const About = () => (
-  <section title="About" className={styles.section}>
+  <section className={styles.section}>
     <h1 className={styles.h1}>Hello, I&apos;m</h1>
     <h2 className={styles.h2}>Lorenzo</h2>
     <h3 className={styles.h3}>Software engineer and hobby photographer.</h3>
     <p className={styles.p}>
-      I work as a senior software engineer at{" "}
-      <Link className={styles.link} href="https://www.klarna.com/careers">
-        Klarna
+      I work as a software engineer at{" "}
+      <Link className={styles.link} href="https://www.pit.com">
+        Pit
       </Link>
-      , working on the search experience in the mobile app using{" "}
+      , with extensive experience using{" "}
       <Link className={styles.link} href="https://www.reactjs.org/">
         React
       </Link>
@@ -43,7 +43,7 @@ export const About = () => (
       .
     </p>
     <p className={styles.p}>
-      I am a self-taught software engineer with 5+ years of experience. In my
+      I am a self-taught software engineer with 10 years of experience. In my
       career I collaborated in both backend and frontend teams, I have
       experience across the stack and can add value to engineering teams on
       multiple levels. I am product oriented and enjoy working in cross
