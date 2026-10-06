@@ -5,7 +5,12 @@ import { PageLayout } from "src/components";
 import Link from "next/link";
 import clsx from "clsx";
 import { Image } from "@imagekit/react";
-import { getShareImageUrl, isNamedFolder, pickCover } from "src/lib/imagekit";
+import {
+  getShareImageUrl,
+  isNamedFolder,
+  pickCover,
+  toCollectionName,
+} from "src/lib/imagekit";
 
 export type Collection = {
   id: string;
@@ -37,11 +42,7 @@ export const getStaticProps: GetStaticProps<{
       const cover = pickCover(files);
       return {
         id: name,
-        displayName: name
-          .replace("-", " ")
-          .split(" ")
-          .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-          .join(" "),
+        displayName: toCollectionName(name),
         coverUrl: cover?.url ?? "",
         coverWidth: cover?.width ?? 600,
         coverHeight: cover?.height ?? 320,

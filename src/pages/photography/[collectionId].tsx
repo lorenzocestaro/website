@@ -11,6 +11,7 @@ import {
   isNamedFolder,
   isPhotoFile,
   pickCover,
+  toCollectionName,
   toPhoto,
   toShareImageUrl,
 } from "src/lib/imagekit";
@@ -56,11 +57,7 @@ export const getStaticProps: GetStaticProps<{
     props: {
       photos,
       shareImageUrl: toShareImageUrl(pickCover(files)),
-      collectionName: collectionId
-        .replace(/[-_]/g, " ")
-        .split(" ")
-        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-        .join(" "),
+      collectionName: toCollectionName(collectionId),
     },
     revalidate: 60 * 15,
   };

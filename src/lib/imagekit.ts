@@ -42,3 +42,10 @@ export const getShareImageUrl = async (path: string) => {
 
   return toShareImageUrl(pickCover(files.filter(isPhotoFile)));
 };
+
+export const toCollectionName = (folderName: string) =>
+  folderName
+    .replace(/[-_]/g, " ")
+    .split(" ")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
