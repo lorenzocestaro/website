@@ -5,7 +5,7 @@ import Link from "next/link";
 
 const styles = {
   h1: clsx("font-light", "text-sm", "sm:text-lg"),
-  h2: clsx("mt-3", "text-3xl", "sm:text-5xl", "font-display", "font-extrabold"),
+  h2: clsx("mt-3", "text-3xl", "sm:text-5xl", "font-display", "font-semibold"),
   h3: clsx("text-xl", "sm:text-3xl", "font-display", "mt-2"),
   link: clsx(
     "border-b-4",

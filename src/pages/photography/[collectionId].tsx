@@ -70,7 +70,7 @@ const styles = {
     "pb-4",
     "md:pb-8",
   ),
-  title: clsx("text-3xl", "font-thin", "font-display"),
+  title: clsx("text-3xl", "font-light", "font-display"),
 };
 
 const GalleryPage: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({

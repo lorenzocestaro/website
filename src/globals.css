@@ -2,7 +2,7 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
-@theme {
-  --font-sans: "Noto Sans";
-  --font-display: "Urbanist";
+@theme inline {
+  --font-sans: var(--font-noto-sans);
+  --font-display: var(--font-urbanist);
 }
