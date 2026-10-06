@@ -27,7 +27,6 @@ const styles = {
     "border-b-2",
     "border-dotted",
     "border-gray-400",
-    "cursor:pointer",
     "hover:border-solid",
   ),
 };
@@ -35,7 +34,7 @@ const styles = {
 export const Footer = () => (
   <footer className={styles.footer}>
     <span>
-      <p>&copy; 2023 Lorenzo Cestaro · All rights reserved</p>
+      &copy; {new Date().getFullYear()} Lorenzo Cestaro · All rights reserved
     </span>
     <span className={styles.break}> · </span>
     <span>

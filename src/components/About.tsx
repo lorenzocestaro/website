@@ -19,7 +19,7 @@ const styles = {
 };
 
 export const About = () => (
-  <section title="About" className={styles.section}>
+  <section className={styles.section}>
     <h1 className={styles.h1}>Hello, I&apos;m</h1>
     <h2 className={styles.h2}>Lorenzo</h2>
     <h3 className={styles.h3}>Software engineer and hobby photographer.</h3>
