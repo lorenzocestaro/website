@@ -5,6 +5,7 @@ import Link from "next/link";
 import clsx from "clsx";
 import Image from "next/image";
 import {
+  fetchPlaceholder,
   listCollectionIds,
   listPhotos,
   pickCover,
@@ -17,6 +18,7 @@ export type Collection = {
   coverUrl: string;
   coverWidth: number;
   coverHeight: number;
+  coverPlaceholder: Awaited<ReturnType<typeof fetchPlaceholder>>;
 };
 
 export const getStaticProps: GetStaticProps<{
@@ -31,6 +33,7 @@ export const getStaticProps: GetStaticProps<{
         coverUrl: cover.url,
         coverWidth: cover.width,
         coverHeight: cover.height,
+        coverPlaceholder: await fetchPlaceholder(cover),
       };
     }),
   );
@@ -42,12 +45,13 @@ export const getStaticProps: GetStaticProps<{
 };
 
 const styles = {
-  container: clsx("grow"),
+  container: clsx("w-full", "grow"),
   grid: clsx("grid", "grid-cols-1", "gap-4", "md:grid-cols-2", "xl:gap-16"),
   gridItem: clsx("flex", "flex-col", "items-start"),
   collectionLink: clsx(
     "group",
     "block",
+    "w-full",
     "overflow-hidden",
     "transition-transform",
     "duration-150",
@@ -84,6 +88,7 @@ const PhotographyCollectionsPage: React.FC<
                   className={styles.collectionCoverImage}
                   alt={collection.displayName}
                   height={collection.coverHeight}
+                  placeholder={collection.coverPlaceholder ?? "empty"}
                   sizes="(min-width: 768px) 50vw, 100vw"
                   src={collection.coverUrl}
                   title={collection.displayName}

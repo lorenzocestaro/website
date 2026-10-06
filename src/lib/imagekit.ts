@@ -27,12 +27,52 @@ export const listCollectionIds = async () => {
   return folders.flatMap((folder) => folder.name ?? []);
 };
 
-export const toPhoto = (file: PhotoFile): Photo => ({
+type PlaceholderDataURL = `data:image/svg+xml;${string}`;
+
+export type GalleryPhoto = Photo & { placeholder: PlaceholderDataURL | null };
+
+// Stretched to full size, the 32px image looks blocky, so blur it inside an
+// SVG. The image overhangs the frame so the blur doesn't fade the edges.
+const toBlurredSvg = (webp: string, { width, height }: PhotoFile) => {
+  const svgHeight = Math.round((32 * height) / width);
+  const svg = `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 ${svgHeight}'><filter id='b'><feGaussianBlur stdDeviation='1'/></filter><image x='-1.5' y='-1.5' width='35' height='${svgHeight + 3}' preserveAspectRatio='none' href='${webp}' filter='url(#b)'/></svg>`;
+
+  return `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}` as const;
+};
+
+// Inlined into the page as next/image's placeholder, about 800 characters.
+export const fetchPlaceholder = async (
+  file: PhotoFile,
+): Promise<PlaceholderDataURL | null> => {
+  const placeholderUrl = new URL(file.url);
+  placeholderUrl.searchParams.set("tr", "w-32,q-50,f-webp");
+
+  try {
+    const response = await fetch(placeholderUrl, {
+      signal: AbortSignal.timeout(5000),
+    });
+    if (!response.ok) {
+      throw new Error(`status ${response.status}`);
+    }
+    const bytes = Buffer.from(await response.arrayBuffer());
+
+    return toBlurredSvg(
+      `data:image/webp;base64,${bytes.toString("base64")}`,
+      file,
+    );
+  } catch (error) {
+    console.warn(`Placeholder failed for ${file.url}:`, error);
+    return null;
+  }
+};
+
+export const toPhoto = async (file: PhotoFile): Promise<GalleryPhoto> => ({
   key: file.fileId,
   src: file.url,
   width: file.width,
   height: file.height,
   title: String(file.customMetadata?.title),
+  placeholder: await fetchPlaceholder(file),
 });
 
 export const pickCover = (files: PhotoFile[]) =>

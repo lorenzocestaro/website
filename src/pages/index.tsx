@@ -2,19 +2,18 @@ import React from "react";
 
 import shuffle from "lodash.shuffle";
 import type { InferGetStaticPropsType, GetStaticProps } from "next";
-import { type Photo } from "react-photo-album";
 
 import { Gallery, PageLayout } from "src/components";
-import { listPhotos, toPhoto } from "src/lib/imagekit";
+import { type GalleryPhoto, listPhotos, toPhoto } from "src/lib/imagekit";
 
 export const getStaticProps = (async () => {
   const files = await listPhotos("homepage");
 
   return {
-    props: { photos: shuffle(files.map(toPhoto)) },
+    props: { photos: shuffle(await Promise.all(files.map(toPhoto))) },
     revalidate: 60 * 15,
   };
-}) satisfies GetStaticProps<{ photos: Photo[] }>;
+}) satisfies GetStaticProps<{ photos: GalleryPhoto[] }>;
 
 const HomePage: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
   photos,
