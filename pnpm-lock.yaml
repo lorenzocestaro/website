@@ -11,9 +11,6 @@ importers:
       '@imagekit/nodejs':
         specifier: ^7.12.1
         version: 7.12.1
-      '@imagekit/react':
-        specifier: ^5.0.3
-        version: 5.0.3(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       '@vercel/analytics':
         specifier: ^2.0.1
         version: 2.0.1(next@16.3.8(@babel/core@7.29.7(supports-color@7.2.0))(@types/node@24.19.1)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(react@19.3.0)
@@ -247,17 +244,8 @@ packages:
     resolution: {integrity: sha512-bV0Tgo9K4hfPCek+aMAn81RppFKv2ySDQeMoSZuvTASywNTnVJCArCZE2FWqpvIatKu7VMRLWlR1EazvVhDyhQ==}
     engines: {node: '>=18.18'}
 
-  '@imagekit/javascript@5.5.1':
-    resolution: {integrity: sha512-eGEbZGKCqX/rC1iwceb1pLg5oHJhGkH68+i6JhFFSDktrdCMC/475a5R0Obtnk6IbIc4eV+1vynkK4WZFeLWEQ==}
-
   '@imagekit/nodejs@7.12.1':
     resolution: {integrity: sha512-4eIg2llqpes+KbJ5AJSQgKp27b2oGR32wm/XckYsqPBJxpUYRQm0sBPRtmXdmV31hWG48J6d7NvKvW9Ylk3XdA==}
-
-  '@imagekit/react@5.0.3':
-    resolution: {integrity: sha512-Hhct0SQZNstdjt5ich2dGsFOz1JyE6WX0VyhF7dTSljGeXD2PzVP8Ybc37nMgrWi2JhKCoikRz/6I/P7jEmEqQ==}
-    peerDependencies:
-      react: ^16.13.1 || ^17.0.0 || ^18.0.0 || ^19.0.0
-      react-dom: ^16.13.1 || ^17.0.0 || ^18.0.0 || ^19.0.0
 
   '@img/colour@1.1.0':
     resolution: {integrity: sha512-Td76q7j57o/tLVdgS746cYARfSyxk8iEfRxewL9h4OMzYhbW4TAcppl0mT4eyqXddh6L/jwoM75mo7ixa/pCeQ==}
@@ -2520,17 +2508,9 @@ snapshots:
 
   '@humanwhocodes/retry@0.4.3': {}
 
-  '@imagekit/javascript@5.5.1': {}
-
   '@imagekit/nodejs@7.12.1':
     dependencies:
       standardwebhooks: 1.1.1
-
-  '@imagekit/react@5.0.3(react-dom@19.3.0(react@19.3.0))(react@19.3.0)':
-    dependencies:
-      '@imagekit/javascript': 5.5.1
-      react: 19.3.0
-      react-dom: 19.3.0(react@19.3.0)
 
   '@img/colour@1.1.0':
     optional: true

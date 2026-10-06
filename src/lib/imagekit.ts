@@ -4,18 +4,28 @@ import { type Photo } from "react-photo-album";
 type PhotoFile = ImageKit.File &
   Required<Pick<ImageKit.File, "fileId" | "url" | "width" | "height">>;
 
-type NamedFolder = ImageKit.Folder &
-  Required<Pick<ImageKit.Folder, "name" | "folderPath">>;
-
 // The SDK types these fields as optional, so narrow before using them.
-export const isPhotoFile = (file: ImageKit.File): file is PhotoFile =>
+const isPublicPhoto = (file: ImageKit.File): file is PhotoFile =>
+  file.isPrivateFile === false &&
   file.fileId !== undefined &&
   file.url !== undefined &&
   file.width !== undefined &&
   file.height !== undefined;
 
-export const isNamedFolder = (folder: ImageKit.Folder): folder is NamedFolder =>
-  folder.name !== undefined && folder.folderPath !== undefined;
+export const listPhotos = async (path: string) => {
+  const files = await new ImageKit().assets.list({ path, type: "file" });
+
+  return files.filter(isPublicPhoto);
+};
+
+export const listCollectionIds = async () => {
+  const folders = await new ImageKit().assets.list({
+    path: "collections",
+    type: "folder",
+  });
+
+  return folders.flatMap((folder) => folder.name ?? []);
+};
 
 export const toPhoto = (file: PhotoFile): Photo => ({
   key: file.fileId,
@@ -25,7 +35,7 @@ export const toPhoto = (file: PhotoFile): Photo => ({
   title: String(file.customMetadata?.title),
 });
 
-export const pickCover = <T extends ImageKit.File>(files: T[]) =>
+export const pickCover = (files: PhotoFile[]) =>
   files.find((file) => file.tags?.includes("cover")) ?? files[0];
 
 // Social cards crop to roughly 1.91:1, so hand them a pre-cropped image.
@@ -36,12 +46,8 @@ export const toShareImageUrl = (file: PhotoFile) => {
   return url.toString();
 };
 
-export const getShareImageUrl = async (path: string) => {
-  const imagekit = new ImageKit();
-  const files = await imagekit.assets.list({ path, type: "file" });
-
-  return toShareImageUrl(pickCover(files.filter(isPhotoFile)));
-};
+export const getShareImageUrl = async (path: string) =>
+  toShareImageUrl(pickCover(await listPhotos(path)));
 
 export const toCollectionName = (folderName: string) =>
   folderName
