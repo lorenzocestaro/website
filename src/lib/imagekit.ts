@@ -46,8 +46,9 @@ export const toShareImageUrl = (file: PhotoFile) => {
   return url.toString();
 };
 
-export const getShareImageUrl = async (path: string) =>
-  toShareImageUrl(pickCover(await listPhotos(path)));
+// Hand-made collage used as the share image for Home, About and Photography.
+export const SITE_SHARE_IMAGE_URL =
+  "https://ik.imagekit.io/lnz/share-collage.jpg";
 
 export const toCollectionName = (folderName: string) =>
   folderName

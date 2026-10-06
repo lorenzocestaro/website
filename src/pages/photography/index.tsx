@@ -5,10 +5,10 @@ import Link from "next/link";
 import clsx from "clsx";
 import Image from "next/image";
 import {
-  getShareImageUrl,
   listCollectionIds,
   listPhotos,
   pickCover,
+  SITE_SHARE_IMAGE_URL,
   toCollectionName,
 } from "src/lib/imagekit";
 
@@ -22,7 +22,6 @@ export type Collection = {
 
 export const getStaticProps: GetStaticProps<{
   collections: Collection[];
-  shareImageUrl: string;
 }> = async () => {
   const collections = await Promise.all(
     (await listCollectionIds()).map(async (id) => {
@@ -38,7 +37,7 @@ export const getStaticProps: GetStaticProps<{
   );
 
   return {
-    props: { collections, shareImageUrl: await getShareImageUrl("homepage") },
+    props: { collections },
     revalidate: 60 * 5,
   };
 };
@@ -68,11 +67,11 @@ const styles = {
 
 const PhotographyCollectionsPage: React.FC<
   InferGetStaticPropsType<typeof getStaticProps>
-> = ({ collections, shareImageUrl }) => (
+> = ({ collections }) => (
   <PageLayout
     title="Photography · Lorenzo Cestaro"
     description="Photo collections from my travels, mostly landscape and film."
-    shareImageUrl={shareImageUrl}
+    shareImageUrl={SITE_SHARE_IMAGE_URL}
   >
     <div className={styles.container}>
       <div className={styles.grid}>
