@@ -1,4 +1,6 @@
-// Crawlers that collect AI training data. Search crawlers stay allowed.
+// Crawlers that collect AI training data, checked against
+// https://github.com/ai-robots-txt/ai.robots.txt. Search crawlers and
+// user-triggered AI fetchers stay allowed.
 const AI_TRAINING_CRAWLERS = [
   "GPTBot",
   "ClaudeBot",
@@ -7,6 +9,13 @@ const AI_TRAINING_CRAWLERS = [
   "Applebot-Extended",
   "Bytespider",
   "meta-externalagent",
+  "MistralAI-Training",
+  "cohere-training-data-crawler",
+  "Ai2Bot-Dolma",
+  // Tools that build image datasets such as LAION.
+  "img2dataset",
+  "LAIONDownloader",
+  "laion-huggingface-processor",
 ];
 
 /** @type {import('next-sitemap').IConfig} */
