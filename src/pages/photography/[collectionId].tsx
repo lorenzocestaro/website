@@ -1,5 +1,4 @@
 import React from "react";
-import ImageKit from "@imagekit/nodejs";
 import type {
   GetStaticPaths,
   GetStaticProps,
@@ -8,8 +7,8 @@ import type {
 import { Gallery as PhotoGallery, PageLayout } from "src/components";
 import { type Photo } from "react-photo-album";
 import {
-  isNamedFolder,
-  isPhotoFile,
+  listCollectionIds,
+  listPhotos,
   pickCover,
   toCollectionName,
   toPhoto,
@@ -18,44 +17,24 @@ import {
 import clsx from "clsx";
 import shuffle from "lodash.shuffle";
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  const imagekit = new ImageKit();
-
-  const folders = await imagekit.assets.list({
-    path: "collections",
-    type: "folder",
-  });
-
-  return {
-    paths: folders
-      .filter(isNamedFolder)
-      .map((folder) => ({ params: { collectionId: folder.name } })),
-    fallback: false,
-  };
-};
+export const getStaticPaths: GetStaticPaths = async () => ({
+  paths: (await listCollectionIds()).map((collectionId) => ({
+    params: { collectionId },
+  })),
+  fallback: false,
+});
 
 export const getStaticProps: GetStaticProps<{
   collectionName: string;
   shareImageUrl: string;
   photos: Photo[];
 }> = async (context) => {
-  const imagekit = new ImageKit();
-
   const collectionId = context.params?.collectionId as string;
-  const resources = await imagekit.assets.list({
-    path: `collections/${collectionId}`,
-  });
-  const files = resources
-    .filter(
-      (resource): resource is ImageKit.File =>
-        resource.type === "file" && resource.isPrivateFile === false,
-    )
-    .filter(isPhotoFile);
-  const photos = shuffle(files.map(toPhoto));
+  const files = await listPhotos(`collections/${collectionId}`);
 
   return {
     props: {
-      photos,
+      photos: shuffle(files.map(toPhoto)),
       shareImageUrl: toShareImageUrl(pickCover(files)),
       collectionName: toCollectionName(collectionId),
     },

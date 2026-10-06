@@ -1,14 +1,14 @@
 import React from "react";
-import ImageKit from "@imagekit/nodejs";
 import type { GetStaticProps, InferGetStaticPropsType } from "next";
 import { PageLayout } from "src/components";
 import Link from "next/link";
 import clsx from "clsx";
-import { Image } from "@imagekit/react";
+import Image from "next/image";
 import {
-  getShareImageUrl,
-  isNamedFolder,
+  listCollectionIds,
+  listPhotos,
   pickCover,
+  SITE_SHARE_IMAGE_URL,
   toCollectionName,
 } from "src/lib/imagekit";
 
@@ -22,36 +22,22 @@ export type Collection = {
 
 export const getStaticProps: GetStaticProps<{
   collections: Collection[];
-  shareImageUrl: string;
 }> = async () => {
-  const imagekit = new ImageKit();
-
-  // List all subfolders in the 'galleries' folder
-  const folders = await imagekit.assets.list({
-    path: "collections",
-    type: "folder",
-  });
-
-  // For each folder, get the first image as cover and count items
-  const collections: Collection[] = await Promise.all(
-    folders.filter(isNamedFolder).map(async ({ name, folderPath }) => {
-      const files = await imagekit.assets.list({
-        path: folderPath,
-        type: "file",
-      });
-      const cover = pickCover(files);
+  const collections = await Promise.all(
+    (await listCollectionIds()).map(async (id) => {
+      const cover = pickCover(await listPhotos(`collections/${id}`));
       return {
-        id: name,
-        displayName: toCollectionName(name),
-        coverUrl: cover?.url ?? "",
-        coverWidth: cover?.width ?? 600,
-        coverHeight: cover?.height ?? 320,
+        id,
+        displayName: toCollectionName(id),
+        coverUrl: cover.url,
+        coverWidth: cover.width,
+        coverHeight: cover.height,
       };
     }),
   );
 
   return {
-    props: { collections, shareImageUrl: await getShareImageUrl("homepage") },
+    props: { collections },
     revalidate: 60 * 5,
   };
 };
@@ -81,11 +67,11 @@ const styles = {
 
 const PhotographyCollectionsPage: React.FC<
   InferGetStaticPropsType<typeof getStaticProps>
-> = ({ collections, shareImageUrl }) => (
+> = ({ collections }) => (
   <PageLayout
     title="Photography · Lorenzo Cestaro"
     description="Photo collections from my travels, mostly landscape and film."
-    shareImageUrl={shareImageUrl}
+    shareImageUrl={SITE_SHARE_IMAGE_URL}
   >
     <div className={styles.container}>
       <div className={styles.grid}>
@@ -95,20 +81,17 @@ const PhotographyCollectionsPage: React.FC<
               href={`/photography/${collection.id}`}
               className={styles.collectionLink}
             >
-              {collection.coverUrl && (
-                <div className={styles.collectionCoverContainer}>
-                  <Image
-                    className={styles.collectionCoverImage}
-                    alt={collection.displayName}
-                    height={collection.coverHeight}
-                    loading="lazy"
-                    responsive={false}
-                    src={collection.coverUrl}
-                    title={collection.displayName}
-                    width={collection.coverWidth}
-                  />
-                </div>
-              )}
+              <div className={styles.collectionCoverContainer}>
+                <Image
+                  className={styles.collectionCoverImage}
+                  alt={collection.displayName}
+                  height={collection.coverHeight}
+                  sizes="(min-width: 768px) 50vw, 100vw"
+                  src={collection.coverUrl}
+                  title={collection.displayName}
+                  width={collection.coverWidth}
+                />
+              </div>
               <h2 className={styles.collectionTitle}>
                 {collection.displayName}
               </h2>

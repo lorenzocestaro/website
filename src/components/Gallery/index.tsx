@@ -2,12 +2,12 @@ import React from "react";
 
 import clsx from "clsx";
 import { ChevronLeft, ChevronRight, X, ZoomIn, ZoomOut } from "react-feather";
-import { Image } from "@imagekit/react";
+import Image from "next/image";
 import {
   ColumnsPhotoAlbum,
-  RenderPhotoContext,
-  RenderPhotoProps,
   type ColumnsPhotoAlbumProps,
+  type RenderImageContext,
+  type RenderImageProps,
 } from "react-photo-album";
 import Lightbox from "yet-another-react-lightbox";
 import { Zoom } from "yet-another-react-lightbox/plugins";
@@ -46,23 +46,25 @@ const getSpacing = (width: number) => {
 };
 
 const renderImage = (
-  { onClick }: RenderPhotoProps,
-  { photo }: RenderPhotoContext,
-) => {
-  return (
-    <Image
-      alt={photo.alt}
-      height={photo.height}
-      key={photo.key}
-      loading="lazy"
-      responsive={false}
-      onClick={onClick}
-      src={photo.src}
-      style={{ width: "100%", cursor: "zoom-in" }}
-      title={photo.title}
-      width={photo.width}
-    />
-  );
+  { alt = "", title, sizes, className, style }: RenderImageProps,
+  { photo }: RenderImageContext,
+) => (
+  <Image
+    alt={alt}
+    className={className}
+    height={photo.height}
+    sizes={sizes}
+    src={photo.src}
+    style={style}
+    title={title}
+    width={photo.width}
+  />
+);
+
+// Album width: full viewport minus the PageLayout side padding (px-6, lg:px-14).
+const albumSizes = {
+  size: "calc(100vw - 112px)",
+  sizes: [{ viewport: "(max-width: 1023px)", size: "calc(100vw - 48px)" }],
 };
 
 const styles = {
@@ -80,10 +82,12 @@ export const Gallery: React.FC<GalleryProps> = ({ photos }) => {
     <div className={styles.galleryContainer}>
       <ColumnsPhotoAlbum
         columns={getColumns}
+        componentsProps={{ button: { style: { cursor: "zoom-in" } } }}
         defaultContainerWidth={1200}
         onClick={openLightbox}
         photos={photos}
-        render={{ photo: renderImage }}
+        render={{ image: renderImage }}
+        sizes={albumSizes}
         spacing={getSpacing}
       />
       <Lightbox
