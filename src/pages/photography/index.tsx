@@ -44,6 +44,9 @@ export const getStaticProps: GetStaticProps<{
   };
 };
 
+// The grid shows 2 covers per row from md up; load that first row right away.
+const FIRST_ROW_SIZE = 2;
+
 const styles = {
   container: clsx("w-full", "grow"),
   grid: clsx("grid", "grid-cols-1", "gap-4", "md:grid-cols-2", "xl:gap-16"),
@@ -77,7 +80,7 @@ const PhotographyCollectionsPage: React.FC<
   >
     <div className={styles.container}>
       <div className={styles.grid}>
-        {collections.map((collection) => (
+        {collections.map((collection, index) => (
           <div key={collection.id} className={styles.gridItem}>
             <Link
               href={`/photography/${collection.id}`}
@@ -87,7 +90,9 @@ const PhotographyCollectionsPage: React.FC<
                 <Image
                   className={styles.collectionCoverImage}
                   alt={collection.displayName}
+                  fetchPriority={index < FIRST_ROW_SIZE ? "high" : undefined}
                   height={collection.coverHeight}
+                  loading={index < FIRST_ROW_SIZE ? "eager" : "lazy"}
                   placeholder={collection.coverPlaceholder ?? "empty"}
                   sizes="(min-width: 768px) 50vw, 100vw"
                   src={collection.coverUrl}
