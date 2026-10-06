@@ -5,7 +5,12 @@ import { PageLayout } from "src/components";
 import Link from "next/link";
 import clsx from "clsx";
 import { Image } from "@imagekit/react";
-import { isNamedFolder } from "src/lib/imagekit";
+import {
+  getShareImageUrl,
+  isNamedFolder,
+  pickCover,
+  toCollectionName,
+} from "src/lib/imagekit";
 
 export type Collection = {
   id: string;
@@ -17,6 +22,7 @@ export type Collection = {
 
 export const getStaticProps: GetStaticProps<{
   collections: Collection[];
+  shareImageUrl: string;
 }> = async () => {
   const imagekit = new ImageKit();
 
@@ -33,15 +39,10 @@ export const getStaticProps: GetStaticProps<{
         path: folderPath,
         type: "file",
       });
-      const cover =
-        files.find((file) => file.tags?.includes("cover")) ?? files[0];
+      const cover = pickCover(files);
       return {
         id: name,
-        displayName: name
-          .replace("-", " ")
-          .split(" ")
-          .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-          .join(" "),
+        displayName: toCollectionName(name),
         coverUrl: cover?.url ?? "",
         coverWidth: cover?.width ?? 600,
         coverHeight: cover?.height ?? 320,
@@ -50,7 +51,7 @@ export const getStaticProps: GetStaticProps<{
   );
 
   return {
-    props: { collections },
+    props: { collections, shareImageUrl: await getShareImageUrl("homepage") },
     revalidate: 60 * 5,
   };
 };
@@ -80,8 +81,12 @@ const styles = {
 
 const PhotographyCollectionsPage: React.FC<
   InferGetStaticPropsType<typeof getStaticProps>
-> = ({ collections }) => (
-  <PageLayout title="Photography · Lorenzo Cestaro">
+> = ({ collections, shareImageUrl }) => (
+  <PageLayout
+    title="Photography · Lorenzo Cestaro"
+    description="Photo collections from my travels, mostly landscape and film."
+    shareImageUrl={shareImageUrl}
+  >
     <div className={styles.container}>
       <div className={styles.grid}>
         {collections.map((collection) => (
