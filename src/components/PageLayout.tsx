@@ -34,14 +34,15 @@ const styles = {
 export type PageLayoutProps = {
   children: React.ReactNode | React.ReactNode[];
   description: string;
-  shareImageUrl: string;
+  shareImageUrl?: string;
   title: string;
 };
 
 export const PageLayout: React.FC<PageLayoutProps> = ({
   children,
   description,
-  shareImageUrl,
+  // Hand-made collage, shared by every page without a cover of its own.
+  shareImageUrl = "https://ik.imagekit.io/lnz/share-collage.jpg",
   title,
 }) => {
   const isMobile = useCollapsedMenu();

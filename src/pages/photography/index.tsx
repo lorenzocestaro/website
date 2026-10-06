@@ -8,7 +8,6 @@ import {
   listCollectionIds,
   listPhotos,
   pickCover,
-  SITE_SHARE_IMAGE_URL,
   toCollectionName,
 } from "src/lib/imagekit";
 
@@ -71,7 +70,6 @@ const PhotographyCollectionsPage: React.FC<
   <PageLayout
     title="Photography · Lorenzo Cestaro"
     description="Photo collections from my travels, mostly landscape and film."
-    shareImageUrl={SITE_SHARE_IMAGE_URL}
   >
     <div className={styles.container}>
       <div className={styles.grid}>
