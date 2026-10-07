@@ -47,9 +47,15 @@ export const fetchPlaceholder = async (
   const placeholderUrl = new URL(file.url);
   placeholderUrl.searchParams.set("tr", "w-32,q-50,f-webp");
 
+  const request = () =>
+    fetch(placeholderUrl, { signal: AbortSignal.timeout(5000) });
+
   try {
-    const response = await fetch(placeholderUrl, {
-      signal: AbortSignal.timeout(5000),
+    // ImageKit resets some connections in a burst (ECONNRESET), so retry
+    // network errors once. fetch throws TypeError only for those.
+    const response = await request().catch((error) => {
+      if (!(error instanceof TypeError)) throw error;
+      return request();
     });
     if (!response.ok) {
       throw new Error(`status ${response.status}`);
@@ -61,7 +67,11 @@ export const fetchPlaceholder = async (
       file,
     );
   } catch (error) {
-    console.warn(`Placeholder failed for ${file.url}:`, error);
+    console.warn(
+      `Placeholder failed for ${file.url}:`,
+      error,
+      (error as Error).cause,
+    );
     return null;
   }
 };
